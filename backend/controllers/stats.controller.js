@@ -17,6 +17,7 @@ const playerWinRate = async (req, res) => {
         if(!puuid){
             return res.status(404).send('Puuid not found');
         }
+
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
 
         const matchIds = matchHistoryResponse.data.slice(0,9);
@@ -73,7 +74,7 @@ const playerMostPlayedTraits = async (req, res) => {
 
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
 
-        const matchIds = matchHistoryResponse.data;
+        const matchIds = matchHistoryResponse.data.slice(0,5);
         const matchDetailsPromises = matchIds.map(matchId =>
             client.get(`/tft/match/v1/matches/${matchId}`)
         );
@@ -81,7 +82,34 @@ const playerMostPlayedTraits = async (req, res) => {
         const matchDetailsResponses = await Promise.all(matchDetailsPromises);
         const matchDetails = matchDetailsResponses.map(response => response.data);
 
+        const playerTraits = matchDetails.map(matches => {
+            const participant = matches.info.participants.find(
+                participant => participant.puuid === puuid
+            );
 
+            if(participant){
+                return participant.traits;
+            } else {
+                return [];
+            }
+        });
+
+        const traits = playerTraits.flat();
+        const traitCount = traits.reduce((acc, trait) => {
+            if(acc[trait.name]){
+                acc[trait.name] += 1;
+            } else {
+                acc[trait.name] = 1;
+            }
+            return acc;
+        }, {});
+
+        const sortedTraits = Object.entries(traitCount).sort((a,b) => b[1] - a[1]);
+        const mostPlayedTraits = sortedTraits.slice(0,10);
+
+        res.json({
+            mostPlayedTraits: mostPlayedTraits
+        });
 
     } catch(error){
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
