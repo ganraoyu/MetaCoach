@@ -1,9 +1,4 @@
-const dotenv = require('dotenv');
-const axios = require('axios');
-const path = require('path');
 const axiosClient = require('../utils/axiosClient');
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-const RIOT_API_KEY = process.env.RIOT_API_KEY; 
 
 const getPlayerByGameNameAndTagLine = async (req, res) => {
 
@@ -25,8 +20,7 @@ const getPlayerByGameNameAndTagLine = async (req, res) => {
         }
         
         res.json({
-            puuid: puuid,
-            PlayerData: response.data
+            Playerdata: response.data
         });
         
     } catch (error) {

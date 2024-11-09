@@ -1,11 +1,4 @@
-const express = require('express');
-const dotenv = require('dotenv');
-const path = require('path');
-const axios = require('axios');
 const axiosClient = require('../utils/axiosClient');
-
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-const RIOT_API_KEY = process.env.RIOT_API_KEY; 
 
 const playerWinRate = async (req, res) => {
 
@@ -68,43 +61,31 @@ const playerWinRate = async (req, res) => {
 
 const playerMostPlayedTraits = async (req, res) => {
 
-    const { gameName, tagLine } = req.params;
+    const { gameName, tagLine,region } = req.params;
 
     try{
-        const response = await axios.get(`https://americas.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`, {
-            headers: {
-                'X-Riot-Token': RIOT_API_KEY
-            }
-        });
+        
+        const client = axiosClient(region);
+
+        const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
 
         const puuid = response.data.puuid;
 
-        const matchHistoryResponse = await axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/by-puuid/${puuid}/ids`, {
-            headers: {
-                'X-Riot-Token': RIOT_API_KEY
-            }
-        });
+        const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
 
         const matchIds = matchHistoryResponse.data;
-
         const matchDetailsPromises = matchIds.map(matchId =>
-            axios.get(`https://americas.api.riotgames.com/tft/match/v1/matches/${matchId}`, {
-                headers: {
-                    'X-Riot-Token': RIOT_API_KEY
-                }
-            })
+            client.get(`/tft/match/v1/matches/${matchId}`)
         );
 
         const matchDetailsResponses = await Promise.all(matchDetailsPromises);
         const matchDetails = matchDetailsResponses.map(response => response.data);
 
-        res.json({
-            message: 'Match history fetched successfully',
-            matchDetails: matchDetails
-        });
+
+
     } catch(error){
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
         res.status(500).send('Error connecting to Riot API');
     }
 }
-module.exports = { playerWinRate };
+module.exports = { playerWinRate, playerMostPlayedTraits };
