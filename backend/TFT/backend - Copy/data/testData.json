@@ -1,0 +1,1541 @@
+{
+    "message": "Match history fetched successfully",
+    "matchDetails": {
+      "metadata": {
+        "data_version": "6",
+        "match_id": "NA1_5144935702",
+        "participants": [
+          "-_Kqg7EdHe6-AOA6km1w4ZzRZglpPNdklHRs56Z86ZZjtGLS5LyOTaXtsQWeDViPqCOoROsxQGgnPQ",
+          "-9bWuQIhA4EyKz44-q4QCCUubPV3wYitXY6p8SfqvNszdbX0OlGczSa200jdn-TqOzYquWwNIw3hzw",
+          "JDemvpmwAk2xR-14APC8WtuVxstDp2O4YtSgIM5PYO_M-mCgSH-yQu7Y1rNBYKCWF14QQDOVufelVQ",
+          "8QE2Ib8sj7qpKfcoVFyqruijQCLBdpU8qKBGSVra7ZkXctV6GwAevM_0y5XZaRMCm1eqz6acRMrqdg",
+          "RRUTPv_Uy6nKRriUmvOMxp-ypUWzY1fSFxuE4VSmthshRgdroaLkcxfQbVOtbglGHVfouxaLoEh4YA",
+          "IVqxk7dyVfMVj9YHU91BE8ZOi02zfIqs2B48nflBAYV0NQsz76-if-W4dAon_vKB-dwhsHdj9k9y_Q",
+          "jv5AIp9g3Q5iJZTqO8eJRXnHxv4BOUaEerDf7r4kpE3NE9fgWC7h_l8-dIKSzOxSJUK-BBtzrPVOLw",
+          "EgGdVlQGfmUBp6Njj6PodHCLGh_BbSmXGKZo9D_4gdNWsim4kooRs5LS78c0NLev6gLHblA-LZes9w"
+        ]
+      },
+      "info": {
+        "endOfGameResult": "GameComplete",
+        "gameCreation": 1730486598000,
+        "gameId": 5144935702,
+        "game_datetime": 1730488736047,
+        "game_length": 2100.23022460938,
+        "game_version": "Linux Version 14.21.630.3012 (Oct 28 2024/11:42:05) [PUBLIC] \u003CReleases/14.21\u003E",
+        "mapId": 22,
+        "participants": [
+          {
+            "augments": [
+              "TFT9_Augment_WanderingTrainer",
+              "TFT11_Augment_RainingGoldPlus",
+              "TFT_Augment_ExplosiveGrowthPlus"
+            ],
+            "companion": {
+              "content_ID": "5601b81d-dfe2-40d7-81c5-4795ac9f6f3f",
+              "item_ID": 91002,
+              "skin_ID": 2,
+              "species": "PetChibiOrianna"
+            },
+            "gold_left": 4,
+            "last_round": 28,
+            "level": 9,
+            "missions": {
+              "PlayerScore2": 82
+            },
+            "placement": 8,
+            "players_eliminated": 0,
+            "puuid": "-_Kqg7EdHe6-AOA6km1w4ZzRZglpPNdklHRs56Z86ZZjtGLS5LyOTaXtsQWeDViPqCOoROsxQGgnPQ",
+            "riotIdGameName": "Buymebread",
+            "riotIdTagline": "0828",
+            "time_eliminated": 1635.12976074219,
+            "total_damage_to_players": 78,
+            "traits": [
+              {
+                "name": "TFT12_Arcana",
+                "num_units": 3,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Bastion",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_BatQueen",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Chrono",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 5,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Frost",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Multistriker",
+                "num_units": 3,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Preserver",
+                "num_units": 3,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Scholar",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Vanguard",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Witchcraft",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Lillia",
+                "itemNames": [],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Zilean",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Hecarim",
+                "itemNames": [
+                  "TFT_Item_NegatronCloak",
+                  "TFT_Item_PowerGauntlet"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Rakan",
+                "itemNames": [
+                  "TFT12_Item_Faerie_Armor",
+                  "TFT_Item_WarmogsArmor",
+                  "TFT_Item_GargoyleStoneplate"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_TahmKench",
+                "itemNames": [],
+                "name": "",
+                "rarity": 4,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Kalista",
+                "itemNames": [
+                  "TFT12_Item_Faerie_QueensCrown",
+                  "TFT_Item_GuinsoosRageblade",
+                  "TFT_Item_GuinsoosRageblade"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Camille",
+                "itemNames": [
+                  "TFT_Item_UnstableConcoction",
+                  "TFT_Item_PowerGauntlet",
+                  "TFT_Item_PowerGauntlet"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Morgana",
+                "itemNames": [
+                  "TFT_Item_GargoyleStoneplate"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Milio",
+                "itemNames": [
+                  "TFT_Item_SpearOfShojin",
+                  "TFT_Item_AdaptiveHelm",
+                  "TFT_Item_AdaptiveHelm"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              }
+            ],
+            "win": false
+          },
+          {
+            "augments": [
+              "TFT10_Augment_GoingLong",
+              "TFT9_Augment_OldMansWalkingStick",
+              "TFT12_Augment_ScholarCrest"
+            ],
+            "companion": {
+              "content_ID": "9d5a36bd-62cd-42c2-82d9-3437b7e65a4d",
+              "item_ID": 4009,
+              "skin_ID": 9,
+              "species": "PetMiner"
+            },
+            "gold_left": 1,
+            "last_round": 35,
+            "level": 10,
+            "missions": {
+              "PlayerScore2": 201
+            },
+            "placement": 4,
+            "players_eliminated": 0,
+            "puuid": "-9bWuQIhA4EyKz44-q4QCCUubPV3wYitXY6p8SfqvNszdbX0OlGczSa200jdn-TqOzYquWwNIw3hzw",
+            "riotIdGameName": "Chengo",
+            "riotIdTagline": "NA1",
+            "time_eliminated": 2015.8984375,
+            "total_damage_to_players": 142,
+            "traits": [
+              {
+                "name": "TFT12_Arcana",
+                "num_units": 4,
+                "style": 4,
+                "tier_current": 3,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Ascendant",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Bastion",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_BatQueen",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Multistriker",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Portal",
+                "num_units": 3,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Preserver",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Scholar",
+                "num_units": 6,
+                "style": 4,
+                "tier_current": 3,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Sugarcraft",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Vanguard",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Witchcraft",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Zoe",
+                "itemNames": [],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Ahri",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Hecarim",
+                "itemNames": [],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Bard",
+                "itemNames": [],
+                "name": "",
+                "rarity": 2,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_TahmKench",
+                "itemNames": [
+                  "TFT_Item_RedBuff",
+                  "TFT_Item_Redemption",
+                  "TFT_Item_FrozenHeart"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Ryze",
+                "itemNames": [
+                  "TFT_Item_PowerGauntlet",
+                  "TFT_Item_JeweledGauntlet",
+                  "TFT_Item_ArchangelsStaff"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Taric",
+                "itemNames": [
+                  "TFT_Item_IonicSpark",
+                  "TFT_Item_GargoyleStoneplate",
+                  "TFT_Item_Bloodthirster"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Morgana",
+                "itemNames": [],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Xerath",
+                "itemNames": [
+                  "TFT12_Item_ScholarEmblemItem",
+                  "TFT_Item_HextechGunblade",
+                  "TFT_Item_RabadonsDeathcap"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Milio",
+                "itemNames": [
+                  "TFT_Item_NeedlesslyLargeRod",
+                  "TFT_Item_ArchangelsStaff"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              }
+            ],
+            "win": true
+          },
+          {
+            "augments": [
+              "TFT9_Augment_TiniestTitan",
+              "TFT9_Augment_BalancedBudget2",
+              "TFT10_Augment_InspiringEpitaph"
+            ],
+            "companion": {
+              "content_ID": "5601b81d-dfe2-40d7-81c5-4795ac9f6f3f",
+              "item_ID": 91002,
+              "skin_ID": 2,
+              "species": "PetChibiOrianna"
+            },
+            "gold_left": 3,
+            "last_round": 30,
+            "level": 9,
+            "missions": {
+              "PlayerScore2": 87
+            },
+            "placement": 7,
+            "players_eliminated": 0,
+            "puuid": "JDemvpmwAk2xR-14APC8WtuVxstDp2O4YtSgIM5PYO_M-mCgSH-yQu7Y1rNBYKCWF14QQDOVufelVQ",
+            "riotIdGameName": "IaMsAik0u",
+            "riotIdTagline": "13619",
+            "time_eliminated": 1745.14807128906,
+            "total_damage_to_players": 50,
+            "traits": [
+              {
+                "name": "TFT12_Blaster",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Dragon",
+                "num_units": 3,
+                "style": 4,
+                "tier_current": 2,
+                "tier_total": 2
+              },
+              {
+                "name": "TFT12_Eldritch",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Frost",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Hunter",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Portal",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Pyro",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Ravenous",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Shapeshifter",
+                "num_units": 6,
+                "style": 4,
+                "tier_current": 3,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Witchcraft",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Nomsy",
+                "itemNames": [],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Jayce",
+                "itemNames": [],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Shyvana",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Swain",
+                "itemNames": [
+                  "TFT_Item_Crownguard",
+                  "TFT_Item_WarmogsArmor"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Neeko",
+                "itemNames": [],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Nasus",
+                "itemNames": [
+                  "TFT_Item_ThiefsGloves",
+                  "TFT_Item_NightHarvester",
+                  "TFT_Item_GargoyleStoneplate"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Varus",
+                "itemNames": [
+                  "TFT_Item_SpearOfShojin"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Smolder",
+                "itemNames": [],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Briar",
+                "itemNames": [
+                  "TFT_Item_TitansResolve",
+                  "TFT_Item_Bloodthirster",
+                  "TFT_Item_GuardianAngel"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 2
+              }
+            ],
+            "win": false
+          },
+          {
+            "augments": [
+              "TFT_Augment_Flexible",
+              "TFT9_Augment_Formation2",
+              "TFT6_Augment_PortableForge"
+            ],
+            "companion": {
+              "content_ID": "5897ad9f-4665-4372-8f3e-6c878adb8918",
+              "item_ID": 1,
+              "skin_ID": 1,
+              "species": "PetTFTAvatar"
+            },
+            "gold_left": 2,
+            "last_round": 37,
+            "level": 9,
+            "missions": {
+              "PlayerScore2": 208
+            },
+            "placement": 1,
+            "players_eliminated": 3,
+            "puuid": "8QE2Ib8sj7qpKfcoVFyqruijQCLBdpU8qKBGSVra7ZkXctV6GwAevM_0y5XZaRMCm1eqz6acRMrqdg",
+            "riotIdGameName": "mrotdog",
+            "riotIdTagline": "NA1",
+            "time_eliminated": 2087.0625,
+            "total_damage_to_players": 208,
+            "traits": [
+              {
+                "name": "TFT12_Arcana",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Bastion",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_BatQueen",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Chrono",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Eldritch",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Hunter",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Incantor",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 2
+              },
+              {
+                "name": "TFT12_Multistriker",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Portal",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Preserver",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Ravenous",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Scholar",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Shapeshifter",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Warrior",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Witchcraft",
+                "num_units": 8,
+                "style": 4,
+                "tier_current": 4,
+                "tier_total": 4
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Zoe",
+                "itemNames": [],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Poppy",
+                "itemNames": [
+                  "TFT12_Item_FaerieEmblemItem",
+                  "TFT12_Item_ChronoEmblemItem",
+                  "TFT12_Item_ArcanaEmblemItem"
+                ],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Cassiopeia",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Hecarim",
+                "itemNames": [
+                  "TFT12_Item_HunterEmblemItem",
+                  "TFT12_Item_WitchcraftEmblemItem"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Neeko",
+                "itemNames": [],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Karma",
+                "itemNames": [
+                  "TFT12_Item_WitchcraftEmblemItem",
+                  "TFT_Item_Leviathan",
+                  "TFT_Item_SpearOfShojin"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Fiora",
+                "itemNames": [
+                  "TFT_Item_SpectralGauntlet",
+                  "TFT4_Item_OrnnInfinityForce",
+                  "TFT_Item_NightHarvester"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Briar",
+                "itemNames": [
+                  "TFT_Item_TitansResolve",
+                  "TFT_Item_Artifact_WitsEnd",
+                  "TFT_Item_FrozenHeart"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Morgana",
+                "itemNames": [
+                  "TFT_Item_Crownguard",
+                  "TFT_Item_WarmogsArmor",
+                  "TFT_Item_RedBuff"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              }
+            ],
+            "win": true
+          },
+          {
+            "augments": [
+              "TFT11_Augment_Buildabud",
+              "TFT_Augment_HighVoltage",
+              "TFT12_Augment_Multistriker"
+            ],
+            "companion": {
+              "content_ID": "6be81985-d099-4181-b5e6-a8b91b31398c",
+              "item_ID": 47004,
+              "skin_ID": 4,
+              "species": "PetElegantDragon"
+            },
+            "gold_left": 0,
+            "last_round": 35,
+            "level": 9,
+            "missions": {
+              "PlayerScore2": 201
+            },
+            "placement": 3,
+            "players_eliminated": 2,
+            "puuid": "RRUTPv_Uy6nKRriUmvOMxp-ypUWzY1fSFxuE4VSmthshRgdroaLkcxfQbVOtbglGHVfouxaLoEh4YA",
+            "riotIdGameName": "tuttu",
+            "riotIdTagline": "moc",
+            "time_eliminated": 2012.24365234375,
+            "total_damage_to_players": 131,
+            "traits": [
+              {
+                "name": "TFT12_Arcana",
+                "num_units": 3,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Ascendant",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Bastion",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Chrono",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Multistriker",
+                "num_units": 7,
+                "style": 4,
+                "tier_current": 3,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Portal",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Pyro",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Vanguard",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Warrior",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Jax",
+                "itemNames": [
+                  "TFT_Item_Crownguard",
+                  "TFT_Item_IonicSpark",
+                  "TFT_Item_GargoyleStoneplate"
+                ],
+                "name": "",
+                "rarity": 0,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Kassadin",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Akali",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Hecarim",
+                "itemNames": [
+                  "TFT_Item_ThiefsGloves",
+                  "TFT_Item_SpectralGauntlet",
+                  "TFT_Item_NightHarvester"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Shen",
+                "itemNames": [
+                  "TFT_Item_RedBuff"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_TahmKench",
+                "itemNames": [],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Kalista",
+                "itemNames": [
+                  "TFT_Item_Deathblade",
+                  "TFT_Item_GuinsoosRageblade",
+                  "TFT_Item_LastWhisper"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Camille",
+                "itemNames": [
+                  "TFT_Item_UnstableConcoction"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Xerath",
+                "itemNames": [
+                  "TFT12_Item_MultistrikerEmblemItem"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              }
+            ],
+            "win": true
+          },
+          {
+            "augments": [
+              "TFT9_Augment_HedgeFund",
+              "TFT_Augment_CategoryFive",
+              "TFT9_Augment_BigGrabBag"
+            ],
+            "companion": {
+              "content_ID": "26c2a0d4-22b5-48a4-b2ac-a2788f3c3558",
+              "item_ID": 29052,
+              "skin_ID": 52,
+              "species": "PetDowsie"
+            },
+            "gold_left": 3,
+            "last_round": 30,
+            "level": 8,
+            "missions": {
+              "PlayerScore2": 87
+            },
+            "placement": 6,
+            "players_eliminated": 0,
+            "puuid": "IVqxk7dyVfMVj9YHU91BE8ZOi02zfIqs2B48nflBAYV0NQsz76-if-W4dAon_vKB-dwhsHdj9k9y_Q",
+            "riotIdGameName": "Rubypilot",
+            "riotIdTagline": "NA1",
+            "time_eliminated": 1740.36083984375,
+            "total_damage_to_players": 83,
+            "traits": [
+              {
+                "name": "TFT12_Chrono",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Druid",
+                "num_units": 1,
+                "style": 4,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Frost",
+                "num_units": 3,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Honeymancy",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Hunter",
+                "num_units": 4,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Preserver",
+                "num_units": 3,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Scholar",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Sugarcraft",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Twitch",
+                "itemNames": [],
+                "name": "",
+                "rarity": 0,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Zilean",
+                "itemNames": [],
+                "name": "",
+                "rarity": 1,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_KogMaw",
+                "itemNames": [
+                  "TFT_Item_LastWhisper"
+                ],
+                "name": "",
+                "rarity": 1,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Jinx",
+                "itemNames": [
+                  "TFT_Item_RunaansHurricane",
+                  "TFT_Item_GuinsoosRageblade",
+                  "TFT_Item_RunaansHurricane"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Bard",
+                "itemNames": [
+                  "TFT_Item_Leviathan",
+                  "TFT_Item_RapidFireCannon"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Wukong",
+                "itemNames": [
+                  "TFT_Item_WarmogsArmor",
+                  "TFT_Item_Redemption",
+                  "TFT_Item_NightHarvester"
+                ],
+                "name": "",
+                "rarity": 2,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Rakan",
+                "itemNames": [],
+                "name": "",
+                "rarity": 4,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Olaf",
+                "itemNames": [
+                  "TFT_Item_ThiefsGloves",
+                  "TFT_Item_SpectralGauntlet",
+                  "TFT_Item_NightHarvester"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              }
+            ],
+            "win": false
+          },
+          {
+            "augments": [
+              "TFT6_Augment_MaxLevel10",
+              "TFT9_Augment_BigGrabBag",
+              "TFT10_Augment_InspiringEpitaph"
+            ],
+            "companion": {
+              "content_ID": "fcea42c8-c430-433d-8f55-f18394c2a964",
+              "item_ID": 66001,
+              "skin_ID": 1,
+              "species": "PetPoro"
+            },
+            "gold_left": 3,
+            "last_round": 37,
+            "level": 9,
+            "missions": {
+              "PlayerScore2": 208
+            },
+            "placement": 2,
+            "players_eliminated": 2,
+            "puuid": "jv5AIp9g3Q5iJZTqO8eJRXnHxv4BOUaEerDf7r4kpE3NE9fgWC7h_l8-dIKSzOxSJUK-BBtzrPVOLw",
+            "riotIdGameName": "Dishsoap",
+            "riotIdTagline": "NA2",
+            "time_eliminated": 2086.06127929688,
+            "total_damage_to_players": 140,
+            "traits": [
+              {
+                "name": "TFT12_Arcana",
+                "num_units": 4,
+                "style": 4,
+                "tier_current": 3,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Ascendant",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Bastion",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Eldritch",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Explorer",
+                "num_units": 1,
+                "style": 3,
+                "tier_current": 1,
+                "tier_total": 1
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Mage",
+                "num_units": 3,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Multistriker",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Portal",
+                "num_units": 3,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Scholar",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Vanguard",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 3
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Ahri",
+                "itemNames": [
+                  "TFT_Item_JeweledGauntlet"
+                ],
+                "name": "",
+                "rarity": 1,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Galio",
+                "itemNames": [
+                  "TFT_Item_Artifact_SuspiciousTrenchCoat"
+                ],
+                "name": "",
+                "rarity": 1,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Hecarim",
+                "itemNames": [],
+                "name": "",
+                "rarity": 2,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_TahmKench",
+                "itemNames": [
+                  "TFT_Item_GargoyleStoneplate",
+                  "TFT_Item_WarmogsArmor"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Nami",
+                "itemNames": [
+                  "TFT_Item_Artifact_SuspiciousTrenchCoat",
+                  "TFT_Item_SpearOfShojin",
+                  "TFT_Item_Artifact_HorizonFocus"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Taric",
+                "itemNames": [
+                  "TFT_Item_Crownguard",
+                  "TFT_Item_GargoyleStoneplate"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Xerath",
+                "itemNames": [
+                  "TFT_Item_Bloodthirster",
+                  "TFT_Item_UnstableConcoction"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Milio",
+                "itemNames": [
+                  "TFT_Item_StatikkShiv",
+                  "TFT_Item_GuinsoosRageblade",
+                  "TFT_Item_Chalice"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Norra",
+                "itemNames": [
+                  "TFT_Item_ArchangelsStaff",
+                  "TFT_Item_SpearOfShojin",
+                  "TFT_Item_Morellonomicon"
+                ],
+                "name": "",
+                "rarity": 6,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Yuumi",
+                "itemNames": [],
+                "name": "",
+                "rarity": 9,
+                "tier": 2
+              }
+            ],
+            "win": true
+          },
+          {
+            "augments": [
+              "TFT9_Augment_TiniestTitan",
+              "TFT_Augment_Spellblades",
+              "TFT12_Augment_Scholar"
+            ],
+            "companion": {
+              "content_ID": "745d4a23-9851-4cc4-87f2-d8f3312543c7",
+              "item_ID": 29048,
+              "skin_ID": 48,
+              "species": "PetDowsie"
+            },
+            "gold_left": 4,
+            "last_round": 34,
+            "level": 8,
+            "missions": {
+              "PlayerScore2": 97
+            },
+            "placement": 5,
+            "players_eliminated": 0,
+            "puuid": "EgGdVlQGfmUBp6Njj6PodHCLGh_BbSmXGKZo9D_4gdNWsim4kooRs5LS78c0NLev6gLHblA-LZes9w",
+            "riotIdGameName": "techzz",
+            "riotIdTagline": "brrr",
+            "time_eliminated": 1957.79504394531,
+            "total_damage_to_players": 65,
+            "traits": [
+              {
+                "name": "TFT12_Arcana",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Bastion",
+                "num_units": 4,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Faerie",
+                "num_units": 2,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Multistriker",
+                "num_units": 1,
+                "style": 0,
+                "tier_current": 0,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Portal",
+                "num_units": 3,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              },
+              {
+                "name": "TFT12_Scholar",
+                "num_units": 4,
+                "style": 2,
+                "tier_current": 2,
+                "tier_total": 3
+              },
+              {
+                "name": "TFT12_Witchcraft",
+                "num_units": 2,
+                "style": 1,
+                "tier_current": 1,
+                "tier_total": 4
+              }
+            ],
+            "units": [
+              {
+                "character_id": "TFT12_Zoe",
+                "itemNames": [
+                  "TFT_Item_ArchangelsStaff"
+                ],
+                "name": "",
+                "rarity": 0,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Lillia",
+                "itemNames": [
+                  "TFT_Item_DragonsClaw",
+                  "TFT_Item_WarmogsArmor",
+                  "TFT_Item_NightHarvester"
+                ],
+                "name": "",
+                "rarity": 0,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Poppy",
+                "itemNames": [
+                  "TFT_Item_IonicSpark",
+                  "TFT_Item_WarmogsArmor"
+                ],
+                "name": "",
+                "rarity": 0,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Ahri",
+                "itemNames": [
+                  "TFT_Item_JeweledGauntlet",
+                  "TFT_Item_BlueBuff",
+                  "TFT_Item_HextechGunblade"
+                ],
+                "name": "",
+                "rarity": 1,
+                "tier": 3
+              },
+              {
+                "character_id": "TFT12_Hecarim",
+                "itemNames": [],
+                "name": "",
+                "rarity": 2,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Ryze",
+                "itemNames": [
+                  "TFT_Item_StatikkShiv",
+                  "TFT_Item_PowerGauntlet"
+                ],
+                "name": "",
+                "rarity": 4,
+                "tier": 2
+              },
+              {
+                "character_id": "TFT12_Taric",
+                "itemNames": [],
+                "name": "",
+                "rarity": 4,
+                "tier": 1
+              },
+              {
+                "character_id": "TFT12_Milio",
+                "itemNames": [],
+                "name": "",
+                "rarity": 6,
+                "tier": 1
+              }
+            ],
+            "win": false
+          }
+        ],
+        "queueId": 1100,
+        "queue_id": 1100,
+        "tft_game_type": "standard",
+        "tft_set_core_name": "TFTSet12",
+        "tft_set_number": 12
+      }
+    }
+  }
