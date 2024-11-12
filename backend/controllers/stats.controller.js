@@ -78,7 +78,7 @@ const playerMostPlayedTraits = async (req, res) => {
         }
 
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-        const matchIds = matchHistoryResponse.data.slice(0, 20); 
+        const matchIds = matchHistoryResponse.data.slice(0, 2); 
 
         const matchDetailsPromises = matchIds.map(matchId =>
             client.get(`/tft/match/v1/matches/${matchId}`)
@@ -99,7 +99,7 @@ const playerMostPlayedTraits = async (req, res) => {
                     const traitName = trait.name;
                     const numUnits = trait.num_units;
 
-                    if (traitCounts[traitName]) {
+                    if (traitCounts[traitName]) {   
                         traitCounts[traitName] += numUnits;
                     } else {
                         traitCounts[traitName] = numUnits;
@@ -122,5 +122,7 @@ const playerMostPlayedTraits = async (req, res) => {
         res.status(500).send('Error connecting to Riot API');
     }
 };
+
+
 
 module.exports = { playerWinRate, playerMostPlayedTraits };
