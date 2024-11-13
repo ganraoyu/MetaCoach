@@ -123,7 +123,7 @@ const playerMostPlayedTraits = async (req, res) => {
     }
 };
 
-const playerMostPlayedAugments = async (req, res){
+const playerMostPlayedAugments = async (req, res) =>{
     const { gameName, tagLine, region } = req.params
 
     try{
@@ -138,7 +138,7 @@ const playerMostPlayedAugments = async (req, res){
         }
 
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-        const matchIds = matchHistoryResponse.data.slice(0, 2); 
+        const matchIds = matchHistoryResponse.data.slice(0, 1); 
 
         const matchDetailsPromises = matchIds.map(matchId =>
             client.get(`/tft/match/v1/matches/${matchId}`)
@@ -153,7 +153,27 @@ const playerMostPlayedAugments = async (req, res){
             const participant = matches.info.participants.find(
                 participant => participant.puuid === puuid
             );
+            if(participant && participant.augments){
+                participant.augments.forEach(augment => {
+                    const augmentName = augment.name;
+                    if(augments[augmentName]){
+                        augments[augmentName] += 1;
+                    } else {
+                        augments[augmentName] = 1;
+                    }
+                });
+            }
         })
+
+        const topThreeAugments = Object.entries(augments)
+            .sort(([, a], [, b]) => b - a)
+            .slice(0, 3)
+            .map(([augment]) => ({ augment }));
+
+        res.json({
+            mostPlayedAugments: topThreeAugments,
+            augments: augments
+        });
     } catch (error){
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
         res.status(500).send('Error connecting to Riot API');
@@ -161,4 +181,4 @@ const playerMostPlayedAugments = async (req, res){
 }
 
 
-module.exports = { playerWinRate, playerMostPlayedTraits };
+module.exports = { playerWinRate, playerMostPlayedTraits, playerMostPlayedAugments };
