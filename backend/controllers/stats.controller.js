@@ -138,7 +138,7 @@ const playerMostPlayedAugments = async (req, res) =>{
         }
 
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-        const matchIds = matchHistoryResponse.data.slice(0, 1); 
+        const matchIds = matchHistoryResponse.data.slice(0, 20); 
 
         const matchDetailsPromises = matchIds.map(matchId =>
             client.get(`/tft/match/v1/matches/${matchId}`)
@@ -155,11 +155,10 @@ const playerMostPlayedAugments = async (req, res) =>{
             );
             if(participant && participant.augments){
                 participant.augments.forEach(augment => {
-                    const augmentName = augment.name;
-                    if(augments[augmentName]){
-                        augments[augmentName] += 1;
+                    if(augments[augment]){
+                        augments[augment] += 1;
                     } else {
-                        augments[augmentName] = 1;
+                        augments[augment] = 1;
                     }
                 });
             }
@@ -168,11 +167,10 @@ const playerMostPlayedAugments = async (req, res) =>{
         const topThreeAugments = Object.entries(augments)
             .sort(([, a], [, b]) => b - a)
             .slice(0, 3)
-            .map(([augment]) => ({ augment }));
+            .map(([augment, num_games]) => ({ augment, num_games }));
 
         res.json({
             mostPlayedAugments: topThreeAugments,
-            augments: augments
         });
     } catch (error){
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
