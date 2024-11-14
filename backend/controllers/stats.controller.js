@@ -1,6 +1,6 @@
-const axiosClient = require('../utils/axiosClient');
+const fullRegionClient = require('../utils/axiosClients');
 
-const playerWinRate = async (req, res) => {
+const getPlayerWinRate = async (req, res) => {
 
     const { gameName, tagLine, region } = req.params;
 
@@ -9,7 +9,7 @@ const playerWinRate = async (req, res) => {
     }
 
     try{
-        const client = axiosClient(region);
+        const client = fullRegionClient(region);
 
         const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
             const puuid = response.data.puuid;
@@ -60,7 +60,7 @@ const playerWinRate = async (req, res) => {
     }
 }
 
-const playerMostPlayedTraits = async (req, res) => {
+const getPlayerMostPlayedTraits = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
 
     if (!gameName || !tagLine) {
@@ -68,7 +68,7 @@ const playerMostPlayedTraits = async (req, res) => {
     }
 
     try {
-        const client = axiosClient(region);
+        const client = fullRegionClient(region);
 
         const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
         const puuid = response.data.puuid;
@@ -123,12 +123,12 @@ const playerMostPlayedTraits = async (req, res) => {
     }
 };
 
-const playerMostPlayedAugments = async (req, res) =>{
+const getPlayerMostPlayedAugments = async (req, res) =>{
     const { gameName, tagLine, region } = req.params
 
     try{
 
-        const client = axiosClient(region);
+        const client = fullRegionClient(region);
 
         const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
         const puuid = response.data.puuid;
@@ -179,4 +179,4 @@ const playerMostPlayedAugments = async (req, res) =>{
 }
 
 
-module.exports = { playerWinRate, playerMostPlayedTraits, playerMostPlayedAugments };
+module.exports = { getPlayerWinRate, getPlayerMostPlayedTraits, getPlayerMostPlayedAugments };

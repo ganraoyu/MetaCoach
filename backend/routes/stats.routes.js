@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { playerWinRate, playerMostPlayedTraits, playerMostPlayedAugments } = require('../controllers/stats.controller');
+const { getPlayerWinRate, getPlayerMostPlayedTraits, getPlayerMostPlayedAugments } = require('../controllers/stats.controller');
 
-router.get('/:region/:gameName/:tagLine', playerWinRate);
-router.get('/:region/:gameName/:tagLine/traits', playerMostPlayedTraits);
-router.get('/:region/:gameName/:tagLine/augments', playerMostPlayedAugments);
+router.get('/:region/:gameName/:tagLine', getPlayerWinRate);
+router.get('/:region/:gameName/:tagLine/traits', getPlayerMostPlayedTraits);
+router.get('/:region/:gameName/:tagLine/augments', getPlayerMostPlayedAugments);
 
 module.exports = router;

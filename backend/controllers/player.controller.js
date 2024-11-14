@@ -1,4 +1,8 @@
-const axiosClient = require('../utils/axiosClient');
+const fullRegionClient = require('../utils/axiosClients');
+const dotenv = require('dotenv');
+const path = require('path');
+dotenv.config({ path: path.resolve(__dirname, '../../.env') });
+const RIOT_API_KEY = process.env.RIOT_API_KEY;
 
 const getPlayerByGameNameAndTagLine = async (req, res) => {
 
@@ -10,7 +14,7 @@ const getPlayerByGameNameAndTagLine = async (req, res) => {
     }
     
     try {
-        const client = axiosClient(region);
+        const client = fullRegionClient(region);
 
         const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
         const puuid = response.data.puuid
@@ -38,7 +42,7 @@ const getPlayerMatches = async (req, res) => {
     }
 
     try {
-        const client = axiosClient(region);
+        const client = fullRegionClient(region);
 
         const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
         const puuid = response.data.puuid;
@@ -74,11 +78,13 @@ const getPlayerMatches = async (req, res) => {
 };
 
 const summonerInfo = async (req, res) => {
-    try{
-        
+    const { gameName, tagLine, region } = req.params;
+
+    try {
+
     } catch (error) {
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
         res.status(500).send('Error connecting to Riot API');
     }
-}
-module.exports = { getPlayerByGameNameAndTagLine, getPlayerMatches }; 
+};
+module.exports = { getPlayerByGameNameAndTagLine, getPlayerMatches, summonerInfo };

@@ -1,17 +1,11 @@
-const dotenv = require('dotenv');
-const axios = require('axios');
-const path = require('path');
-dotenv.config({ path: path.resolve(__dirname, '../../.env') });
-const RIOT_API_KEY = process.env.RIOT_API_KEY;
+const fullRegionClientclient = require('../utils/axiosClients');
 
 const getLeaderboard = async (endpoint, res, rank, region) => {
     try {
-        const baseURL = `https://${region}.api.riotgames.com`;
-        const response = await axios.get(`${baseURL}/tft/league/v1/${endpoint}`, {
-            headers: {
-                'X-Riot-Token': RIOT_API_KEY
-            }
-        });
+
+        const client = fullRegionClientclient(region);
+
+        const response = await client.get(`/tft/league/v1/${endpoint}`);
 
         if (!region){
             return res.status(400).send('Please provide a region as a path parameter');
