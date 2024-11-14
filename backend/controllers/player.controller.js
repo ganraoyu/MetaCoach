@@ -1,4 +1,5 @@
 const fullRegionClient = require('../utils/axiosClients');
+const shortRegionClient = require('../utils/axiosClients');
 const dotenv = require('dotenv');
 const path = require('path');
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
@@ -81,6 +82,23 @@ const summonerInfo = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
 
     try {
+        const client = shortRegionClient(region);
+
+        const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
+        const puuid = response.data.puuid
+
+        if (!puuid) {
+            return res.status(404).json({ error: "Puuid not found" });
+        }
+
+        const summonerInfo = await client.get(`/riot/account/v1/accounts/${puuid}`);
+        
+        res.json({
+            message: 'Summoner info fetched successfully',
+            summonerInfo: summonerInfo.data
+        });
+
+
 
     } catch (error) {
         console.error('Error fetching data:', error.response ? error.response.data : error.message);
