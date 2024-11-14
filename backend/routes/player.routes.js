@@ -4,7 +4,7 @@ const router = express.Router();
 
 router.get('/:region/:gameName/:tagLine', getPlayerByGameNameAndTagLine);
 router.get('/matches/:region/:gameName/:tagLine', getPlayerMatches);
-router.get('/summoner/:region/:gameName/:tagLine', summonerInfo);
+router.get('/summoner/:region/:shortRegion/:gameName/:tagLine', summonerInfo);
 
 module.exports = router;
 

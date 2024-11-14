@@ -15,9 +15,9 @@ const fullRegionClient = (region) => {
     })
 }; 
 
-const shortRegionClient = (region) => {
+const shortRegionClient = (shortRegion) => {
     return axios.create({
-        baseURL:`https://${region}.api.riotgames.com`, //na1, euw1, sg1
+        baseURL:`https://${shortRegion}.api.riotgames.com`, //na1, euw1, sg1
         headers: {
             'X-Riot-Token': RIOT_API_KEY
         }
@@ -25,4 +25,4 @@ const shortRegionClient = (region) => {
 };
 
 console.log(RIOT_API_KEY)
-module.exports = fullRegionClient, shortRegionClient;
+module.exports = { fullRegionClient, shortRegionClient };
