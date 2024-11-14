@@ -73,4 +73,12 @@ const getPlayerMatches = async (req, res) => {
     }
 };
 
+const summonerInfo = async (req, res) => {
+    try{
+        
+    } catch (error) {
+        console.error('Error fetching data:', error.response ? error.response.data : error.message);
+        res.status(500).send('Error connecting to Riot API');
+    }
+}
 module.exports = { getPlayerByGameNameAndTagLine, getPlayerMatches }; 

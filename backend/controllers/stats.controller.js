@@ -12,7 +12,7 @@ const playerWinRate = async (req, res) => {
         const client = axiosClient(region);
 
         const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
-        const puuid = response.data.puuid;
+            const puuid = response.data.puuid;
 
         if(!puuid){
             return res.status(404).send('Puuid not found');
