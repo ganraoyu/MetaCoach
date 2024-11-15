@@ -1,4 +1,4 @@
-const fullRegionClient = require('../utils/axiosClients');
+const { fullRegionClient } = require('../utils/generalClients');
 
 const getPlayerWinRate = async (req, res) => {
 
@@ -138,7 +138,7 @@ const getPlayerMostPlayedAugments = async (req, res) =>{
         }
 
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-        const matchIds = matchHistoryResponse.data.slice(0, 20); 
+        const matchIds = matchHistoryResponse.data.slice(20, 21); 
 
         const matchDetailsPromises = matchIds.map(matchId =>
             client.get(`/tft/match/v1/matches/${matchId}`)

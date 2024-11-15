@@ -1,9 +1,9 @@
-const fullRegionClientclient = require('../utils/axiosClients');
+const { shortRegionClient } = require('../utils/generalClients');
 
 const getLeaderboard = async (endpoint, res, rank, region) => {
     try {
 
-        const client = fullRegionClientclient(region);
+        const client = shortRegionClient(region);
 
         const response = await client.get(`/tft/league/v1/${endpoint}`);
 

@@ -4,7 +4,7 @@ const express = require('express');
 const app = express();
 const userRoutes = require('./routes/player.routes.js');
 const leaderboardRoutes = require('./routes/leaderboard.routes.js');
-const statsRoutes = require('./routes/stats.routes.js');
+const statsRoutes = require('./routes/playerStatistics.routes.js');
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const PORT = process.env.PORT || 3000;
