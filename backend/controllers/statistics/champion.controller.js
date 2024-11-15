@@ -8,18 +8,24 @@ const getChallengerPlayers = async (req, res) => {
             regions.map(async (region) => {
                 const client = shortRegionClient(region);
                 const response = await client.get('/tft/league/v1/challenger');
-                const players = response.data.entries;
-                return players.map(player => player.summonerId);
+                const players = response.data.entries.slice(0, 1);
+                return players.map(player => ({ summonerId: player.summonerId, region }));
             })
         );
 
-        const challengerSummonerIds = allChallengerSummonerIds.flat();
-        const count = challengerSummonerIds.length;
+        const challengerSummonerData = allChallengerSummonerIds.flat();
+        const count = challengerSummonerData.length;
 
-        res.json({
-            message: 'Challenger players fetched successfully',
-            challengerSummonerIds: challengerSummonerIds,
-            count: count
+        const summonerPuuid = await Promise.all(
+            challengerSummonerData.map(async ({ summonerId, region}) => {
+                const client = shortRegionClient(region);
+                const response = await client.get(`/tft/summoner/v1/summoners/${summonerId}`);
+                return response.data.puuid;
+            })
+        );  
+        res.json({  
+            count,
+            summonerPuuid
         });
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
