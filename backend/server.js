@@ -2,9 +2,12 @@ const dotenv = require('dotenv');
 const path = require('path');
 const express = require('express');
 const app = express();
+
 const userRoutes = require('./routes/player.routes.js');
 const leaderboardRoutes = require('./routes/leaderboard.routes.js');
-const statsRoutes = require('./routes/playerStatistics.routes.js');
+const playerStatsRoutes = require('./routes/playerStatistics.routes.js');
+const statistics = require('./routes/statistics.routes.js');
+
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const PORT = process.env.PORT || 3000;
@@ -19,7 +22,8 @@ app.get('/', (req, res) => {
 
 app.use('/player', userRoutes);
 app.use('/leaderboard', leaderboardRoutes);      
-app.use('/stats', statsRoutes);                                                
+app.use('/player/statistics', playerStatsRoutes);   
+app.use('/statistics', statistics);                                             
 
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
