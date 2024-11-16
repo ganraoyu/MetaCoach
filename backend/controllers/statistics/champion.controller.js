@@ -9,7 +9,7 @@ const getChallengerPlayers = async (req, res) => {
         'LA1': 'americas',
         'LA2': 'americas',
         'OC1': 'sea',
-        'KR': 'asia',
+        'KR': 'asia', 
         'JP1': 'asia',
         'EUN1': 'europe',
         'EUW1': 'europe',
@@ -59,12 +59,21 @@ const getChallengerPlayers = async (req, res) => {
             return acc;
         }, {});
 
-        res.json({
-            count,
-            puuids,
-            matchIds: matchIdsByRegion
-        });
+        const matchDetails = await Promise.all(
+            Object.entries(matchIdsByRegion).map(async ([region, matchIds]) => {
+                const client = shortRegionClient(region);
+                const matchDetailsPromises = matchIds.map(matchId =>
+                    client.get(`/tft/match/v1/matches/${matchId}`)
+                );
+                const matchDetailsResponses = await Promise.all(matchDetailsPromises);
+                return matchDetailsResponses.map(response => response.data);
+            })
+        );
 
+        res.json({
+            matchIds: matchIdsByRegion,
+            matchDetails
+        });
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
         res.status(500).send('Error fetching challenger players');
