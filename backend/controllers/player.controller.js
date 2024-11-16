@@ -53,7 +53,7 @@ const getPlayerMatches = async (req, res) => {
 
         const matchHistoryResponse = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
 
-        const matchIds = matchHistoryResponse.data.slice(20,21);
+        const matchIds = matchHistoryResponse.data;
 
         if (!matchIds || matchIds.length === 0) {
             return res.status(404).json({ error: 'No matches found for this player' });
