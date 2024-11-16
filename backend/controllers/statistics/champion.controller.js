@@ -8,7 +8,7 @@ const getChallengerPlayers = async (req, res) => {
         'BR1': 'americas',
         'LA1': 'americas',
         'LA2': 'americas',
-        'OC1': 'americas',
+        'OC1': 'sea',
         'KR': 'asia',
         'JP1': 'asia',
         'EUN1': 'europe',
@@ -64,7 +64,7 @@ const getChallengerPlayers = async (req, res) => {
             puuids,
             matchIds: matchIdsByRegion
         });
-        
+
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
         res.status(500).send('Error fetching challenger players');
