@@ -59,20 +59,24 @@ const getChallengerPlayers = async (req, res) => {
             return acc;
         }, {});
 
-        const matchDetails = await Promise.all(
-            Object.entries(matchIdsByRegion).map(async ([region, matchIds]) => {
-                const client = shortRegionClient(region);
-                const matchDetailsPromises = matchIds.map(matchId =>
-                    client.get(`/tft/match/v1/matches/${matchId}`)
-                );
-                const matchDetailsResponses = await Promise.all(matchDetailsPromises);
-                return matchDetailsResponses.map(response => response.data);
-            })
+        const matchDetailsPromises = Object.entries(matchIdsByRegion).flatMap(([region, matchIds]) => {
+            const client = shortRegionClient(region);
+            return matchIds.map(matchId => client.get(`/tft/match/v1/matches/${matchId}`));
+        });
+
+        const matchDetailsResponses = await Promise.all(matchDetailsPromises);
+
+        const playerData = matchDetailsResponses.flatMap(response =>
+            response.data.info.participants.map(participant => ({
+                augments: participant.augments,
+                placement: participant.placement,
+                units: participant.units.map(unit => ({ character_id: unit.character_id, items: unit.itemNames, tier: unit.tier })),
+            }))
         );
 
         res.json({
             matchIds: matchIdsByRegion,
-            matchDetails
+            playerData
         });
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
