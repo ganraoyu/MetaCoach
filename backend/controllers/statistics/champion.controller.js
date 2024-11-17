@@ -66,6 +66,7 @@ const getChallengerPlayers = async (req, res) => {
 
         const matchDetailsResponses = await Promise.all(matchDetailsPromises);
 
+
         const playerData = matchDetailsResponses.flatMap(response =>
             response.data.info.participants.map(participant => ({
                 placement: participant.placement,
@@ -73,35 +74,52 @@ const getChallengerPlayers = async (req, res) => {
             }))
         );
 
-        const champtionData = {}
+        const champtionData = {};
 
-        championWinrate = playerData.reduce((acc, player) => {
+        const championWinrate = playerData.reduce((acc, player) => {
             player.units.forEach(unit => {
                 if (acc[unit.character_id]) {
                     acc[unit.character_id].totalGames += 1;
-                    if (player.placement === 1 ) {
+                    if (player.placement === 1) { // Top 4 is considered a win
                         acc[unit.character_id].wins += 1;
                     }
                 } else {
-                    acc[unit.character_id] = { totalGames: 1, wins: player.placement === 1 ? 1 : 0 };
+                    acc[unit.character_id] = { totalGames: 1, wins: player.placement === 1 ? 1 : 0 }; // Top 4 is considered a win
                 }
             });
             return acc;
-        }, champtionData);
-
+        }, {});
+        
         const winrate = Object.entries(championWinrate).map(([championId, { totalGames, wins }]) => ({
             championId,
-            winrate:  Math.round((wins / totalGames) * 100)
+            winrate: ((wins / totalGames) * 100).toFixed(2)
         }));
-
-        const ranking = winrate.sort((a, b) => b.winrate - a.winrate)
-
+        
+        const championPlacement = playerData.reduce((acc, player) => {
+            player.units.forEach(unit => {
+                if (acc[unit.character_id]) {
+                    acc[unit.character_id].totalGames += 1;
+                    acc[unit.character_id].placements.push(player.placement);
+                } else {
+                    acc[unit.character_id] = { totalGames: 1, placements: [player.placement] };
+                }
+            });
+            return acc;
+        }, {});
+        
+        const placement = Object.entries(championPlacement).map(([championId, { totalGames, placements }]) => ({
+            championId,
+            placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2)
+        }));
+        const ranking = winrate.sort((a, b) => b.winrate - a.winrate);
+        const placementRanking = placement.sort((a, b) => a.placement - b.placement);
+        
         res.json({
             ranking,
-            playerData
+            placementRanking
         });
 
-        
+
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
         res.status(500).send('Error fetching challenger players');
