@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getChallengerLeaderboard, getMasterLeaderboard, getGrandmasterLeaderboard } = require('../controllers/leaderBoard.controller.js');
+const { getChallengerLeaderboard, getMasterLeaderboard, getGrandmasterLeaderboard } = require('../controllers/leaderboard.controller.js');
     
 router.get('/challenger/:region', getChallengerLeaderboard);
 router.get('/grandmaster/:region', getGrandmasterLeaderboard);

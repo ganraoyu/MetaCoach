@@ -1,21 +1,7 @@
-const { shortRegionClient } = require('../../utils/generalClients');
+const { shortRegionClient, fullRegionClient } = require('../../utils/generalClients');
+const { regions, regionMapping } = require('../../utils/regionData.js');
 
-const getChallengerPlayers = async (req, res) => {
-    const regions = ['BR1', 'EUN1', 'EUW1', 'JP1', 'KR', 'LA1', 'LA2', 'NA1', 'OC1', 'TR1', 'RU'];
-
-    const regionMapping = {
-        'NA1': 'americas',
-        'BR1': 'americas',
-        'LA1': 'americas',
-        'LA2': 'americas',
-        'OC1': 'sea',
-        'KR': 'asia', 
-        'JP1': 'asia',
-        'EUN1': 'europe',
-        'EUW1': 'europe',
-        'TR1': 'europe',
-        'RU': 'europe' 
-    };
+const getChampionData = async (req, res) => {
 
     try {
         const allChallengerSummonerIds = await Promise.all(
@@ -130,4 +116,4 @@ const getChallengerPlayers = async (req, res) => {
     }
 };
 
-module.exports = { getChallengerPlayers };
+module.exports = { getChampionData };
