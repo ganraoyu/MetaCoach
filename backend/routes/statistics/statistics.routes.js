@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { getChampionData } = require('../controllers/statistics/champion.controller');
+const { getChampionData } = require('../../controllers/statistics/challenger/champion.controller');
 
 router.get('/champions', getChampionData);
 

@@ -1,5 +1,5 @@
 const express = require('express');
-const { getPlayerByGameNameAndTagLine, getPlayerMatches, summonerInfo } = require('../controllers/player.controller.js');
+const { getPlayerByGameNameAndTagLine, getPlayerMatches, summonerInfo } = require('../../controllers/player/player.controller.js');
 const router = express.Router();
 
 router.get('/:region/:gameName/:tagLine', getPlayerByGameNameAndTagLine);

@@ -1,5 +1,6 @@
-const { shortRegionClient, fullRegionClient } = require('../../utils/generalClients');
-const { regions, regionMapping } = require('../../utils/regionData.js');
+const { shortRegionClient, fullRegionClient } = require('../../../utils/generalClients.js');
+const { regions, regionMapping } = require('../../../utils/regionData.js');
+
 
 const getChampionData = async (req, res) => {
 
@@ -115,5 +116,3 @@ const getChampionData = async (req, res) => {
         res.status(500).send('Error fetching challenger players');
     }
 };
-
-module.exports = { getChampionData };

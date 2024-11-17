@@ -1,4 +1,4 @@
-const { shortRegionClient } = require('../utils/generalClients');
+const { shortRegionClient } = require('../../utils/generalClients');
 
 const getLeaderboard = async (endpoint, res, rank, region) => {
     try {

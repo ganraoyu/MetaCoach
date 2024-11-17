@@ -3,10 +3,10 @@ const path = require('path');
 const express = require('express');
 const app = express();
 
-const userRoutes = require('./routes/player.routes.js');
-const leaderboardRoutes = require('./routes/leaderboard.routes.js');
-const playerStatsRoutes = require('./routes/playerStatistics.routes.js');
-const statistics = require('./routes/statistics.routes.js');
+const userRoutes = require('./routes/player/player.routes.js');
+const leaderboardRoutes = require('./routes/leaderboard/leaderboard.routes.js');
+const playerStatsRoutes = require('./routes/player/playerStatistics.routes.js');
+const statistics = require('./routes/statistics/statistics.routes.js');
 
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
