@@ -14,7 +14,7 @@ const getChallengerPlayers = async (req, res) => {
         'EUN1': 'europe',
         'EUW1': 'europe',
         'TR1': 'europe',
-        'RU': 'europe'
+        'RU': 'europe' 
     };
 
     try {
@@ -26,6 +26,11 @@ const getChallengerPlayers = async (req, res) => {
                 return players.map(player => ({ summonerId: player.summonerId, region }));
             })
         );
+
+        if(allChallengerSummonerIds.length === 0) {
+            res.status(404).send('No challenger players found');
+            return;
+        }
 
         const challengerSummonerData = allChallengerSummonerIds.flat();
         const count = challengerSummonerData.length;
@@ -39,6 +44,11 @@ const getChallengerPlayers = async (req, res) => {
         );
 
         const puuids = summonerPuuid.flat();
+
+        if(puuids.length === 0) {
+            res.status(404).send('No challenger players found');
+            return;
+        }
 
         const puuidMatchHistory = await Promise.all(
             puuids.map(async ({ puuid, region }) => {
@@ -66,6 +76,10 @@ const getChallengerPlayers = async (req, res) => {
 
         const matchDetailsResponses = await Promise.all(matchDetailsPromises);
 
+        if(matchDetailsResponses.length === 0) {
+            res.status(404).send('No challenger Matches found');
+            return;
+        }
 
         const playerData = matchDetailsResponses.flatMap(response =>
             response.data.info.participants.map(participant => ({
@@ -74,51 +88,41 @@ const getChallengerPlayers = async (req, res) => {
             }))
         );
 
-        const champtionData = {};
+        if(playerData.length === 0) {
+            res.status(404).send('No challenger player data found');
+            return;
+        }
 
-        const championWinrate = playerData.reduce((acc, player) => {
-            player.units.forEach(unit => {
-                if (acc[unit.character_id]) {
-                    acc[unit.character_id].totalGames += 1;
-                    if (player.placement === 1) { // Top 4 is considered a win
-                        acc[unit.character_id].wins += 1;
-                    }
-                } else {
-                    acc[unit.character_id] = { totalGames: 1, wins: player.placement === 1 ? 1 : 0 }; // Top 4 is considered a win
-                }
-            });
-            return acc;
-        }, {});
-        
-        const winrate = Object.entries(championWinrate).map(([championId, { totalGames, wins }]) => ({
-            championId,
-            winrate: ((wins / totalGames) * 100).toFixed(2)
-        }));
-        
-        const championPlacement = playerData.reduce((acc, player) => {
+        const championData = playerData.reduce((acc, player) => {
             player.units.forEach(unit => {
                 if (acc[unit.character_id]) {
                     acc[unit.character_id].totalGames += 1;
                     acc[unit.character_id].placements.push(player.placement);
+                    if (player.placement === 1) { 
+                        acc[unit.character_id].wins += 1;
+                    }
                 } else {
-                    acc[unit.character_id] = { totalGames: 1, placements: [player.placement] };
+                    acc[unit.character_id] = {
+                        totalGames: 1,
+                        placements: [player.placement],
+                        wins: player.placement <= 1 ? 1 : 0
+                    };
                 }
             });
             return acc;
         }, {});
         
-        const placement = Object.entries(championPlacement).map(([championId, { totalGames, placements }]) => ({
+        const championRanking = Object.entries(championData).map(([championId, { totalGames, wins, placements }]) => ({
             championId,
+            winrate: (((wins / totalGames) * 100).toFixed(2)) + '%',
             placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2)
         }));
-        const ranking = winrate.sort((a, b) => b.winrate - a.winrate);
-        const placementRanking = placement.sort((a, b) => a.placement - b.placement);
-        
-        res.json({
-            ranking,
-            placementRanking
-        });
 
+        const sortedChampionRanking = championRanking.sort((a, b) => a.placement - b.placement);
+
+        res.json({
+            sortedChampionRanking
+        });
 
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
