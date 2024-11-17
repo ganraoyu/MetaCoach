@@ -68,16 +68,40 @@ const getChallengerPlayers = async (req, res) => {
 
         const playerData = matchDetailsResponses.flatMap(response =>
             response.data.info.participants.map(participant => ({
-                augments: participant.augments,
                 placement: participant.placement,
                 units: participant.units.map(unit => ({ character_id: unit.character_id, items: unit.itemNames, tier: unit.tier })),
             }))
         );
 
+        const champtionData = {}
+
+        championWinrate = playerData.reduce((acc, player) => {
+            player.units.forEach(unit => {
+                if (acc[unit.character_id]) {
+                    acc[unit.character_id].totalGames += 1;
+                    if (player.placement === 1 ) {
+                        acc[unit.character_id].wins += 1;
+                    }
+                } else {
+                    acc[unit.character_id] = { totalGames: 1, wins: player.placement === 1 ? 1 : 0 };
+                }
+            });
+            return acc;
+        }, champtionData);
+
+        const winrate = Object.entries(championWinrate).map(([championId, { totalGames, wins }]) => ({
+            championId,
+            winrate:  Math.round((wins / totalGames) * 100)
+        }));
+
+        const ranking = winrate.sort((a, b) => b.winrate - a.winrate)
+
         res.json({
-            matchIds: matchIdsByRegion,
+            ranking,
             playerData
         });
+
+        
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
         res.status(500).send('Error fetching challenger players');
