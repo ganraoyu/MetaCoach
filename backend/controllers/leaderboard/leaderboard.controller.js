@@ -11,9 +11,20 @@ const getLeaderboard = async (endpoint, res, rank, region) => {
             return res.status(400).send('Please provide a region as a path parameter');
         }
 
+
+        const playerData = Object.entries(response.data.entries).map(([index, entry]) => {
+            return {
+                rank: parseInt(index) + 1,
+                summonerId: entry.summonerId,
+                leaguePoints: entry.leaguePoints,
+                winrate: ((entry.wins / (entry.wins + entry.losses))* 100).toFixed(2) + '%',
+                wins: entry.wins, 
+                losses: entry.losses 
+            }
+        });
+
         res.json({
-            message: `${rank} leaderboard fetched successfully`,
-            leaderboard: response.data
+            playerData
         });
 
     } catch (error) {

@@ -8,7 +8,7 @@ const getChampionData = async (req, res) => {
             regions.map(async (region) => {
                 const client = shortRegionClient(region);
                 const response = await client.get('/tft/league/v1/challenger');
-                const players = response.data.entries.slice(0, 1);
+                const players = response.data.entries.slice(0, 1);  //tak out slice in future
                 return players.map(player => ({ summonerId: player.summonerId, region }));
             })
         );
@@ -41,7 +41,7 @@ const getChampionData = async (req, res) => {
                 const matchRegion = regionMapping[region];
                 const client = shortRegionClient(matchRegion);
                 const response = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-                return response.data.slice(0, 1).map(matchId => ({ matchId, region: matchRegion }));
+                return response.data.slice(0, 1).map(matchId => ({ matchId, region: matchRegion })); //take out slice in future 
             })
         );
 
