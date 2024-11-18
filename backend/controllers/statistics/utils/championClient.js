@@ -2,13 +2,13 @@ const { shortRegionClient, fullRegionClient } = require('../../../utils/generalC
 const { regions, regionMapping } = require('../../../utils/regionData.js');
 
 
-const getChampionData = async (req, res) => {
+const getChampionData = async (rank) => {
 
     try {
         const allChallengerSummonerIds = await Promise.all(
             regions.map(async (region) => {
                 const client = shortRegionClient(region);
-                const response = await client.get('/tft/league/v1/challenger');
+                const response = await client.get(`/tft/league/v1/${rank}`);
                 const players = response.data.entries.slice(0, 1);
                 return players.map(player => ({ summonerId: player.summonerId, region }));
             })
@@ -105,14 +105,12 @@ const getChampionData = async (req, res) => {
             placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2)
         }));
 
-        const sortedChampionRanking = championRanking.sort((a, b) => a.placement - b.placement);
-
-        res.json({
-            sortedChampionRanking
-        });
-
+        return championRanking.sort((a, b) => a.placement - b.placement);
+        
     } catch (error) {
         console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
         res.status(500).send('Error fetching challenger players');
     }
 };
+
+module.exports = getChampionData;
