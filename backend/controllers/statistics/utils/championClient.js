@@ -1,11 +1,9 @@
-const { shortRegionClient, fullRegionClient } = require('../../../utils/generalClients.js');
+const { shortRegionClient } = require('../../../utils/generalClients.js');
 const { regions, regionMapping } = require('../../../utils/regionData.js');
 
-
 const getChampionData = async (rank) => {
-
     try {
-        const allChallengerSummonerIds = await Promise.all(
+        const allSummonerIds = await Promise.all(
             regions.map(async (region) => {
                 const client = shortRegionClient(region);
                 const response = await client.get(`/tft/league/v1/${rank}`);
@@ -14,16 +12,14 @@ const getChampionData = async (rank) => {
             })
         );
 
-        if(allChallengerSummonerIds.length === 0) {
-            res.status(404).send('No challenger players found');
-            return;
+        if (allSummonerIds.length === 0) {
+            throw new Error(`No ${rank} players found`);
         }
 
-        const challengerSummonerData = allChallengerSummonerIds.flat();
-        const count = challengerSummonerData.length;
+        const summonerData = allSummonerIds.flat();
 
         const summonerPuuid = await Promise.all(
-            challengerSummonerData.map(async ({ summonerId, region }) => {
+            summonerData.map(async ({ summonerId, region }) => {
                 const client = shortRegionClient(region);
                 const response = await client.get(`/tft/summoner/v1/summoners/${summonerId}`);
                 return { puuid: response.data.puuid, region };
@@ -32,9 +28,8 @@ const getChampionData = async (rank) => {
 
         const puuids = summonerPuuid.flat();
 
-        if(puuids.length === 0) {
-            res.status(404).send('No challenger players found');
-            return;
+        if (puuids.length === 0) {
+            throw new Error(`No ${rank} players found`);
         }
 
         const puuidMatchHistory = await Promise.all(
@@ -63,21 +58,23 @@ const getChampionData = async (rank) => {
 
         const matchDetailsResponses = await Promise.all(matchDetailsPromises);
 
-        if(matchDetailsResponses.length === 0) {
-            res.status(404).send('No challenger Matches found');
-            return;
+        if (matchDetailsResponses.length === 0) {
+            throw new Error(`No ${rank} matches found`);
         }
 
         const playerData = matchDetailsResponses.flatMap(response =>
             response.data.info.participants.map(participant => ({
                 placement: participant.placement,
-                units: participant.units.map(unit => ({ character_id: unit.character_id, items: unit.itemNames, tier: unit.tier })),
+                units: participant.units.map(unit => ({
+                    character_id: unit.character_id,
+                    items: unit.itemNames,
+                    tier: unit.tier
+                }))
             }))
         );
 
-        if(playerData.length === 0) {
-            res.status(404).send('No challenger player data found');
-            return;
+        if (playerData.length === 0) {
+            throw new Error(`No ${rank} player data found`);
         }
 
         const championData = playerData.reduce((acc, player) => {
@@ -85,31 +82,31 @@ const getChampionData = async (rank) => {
                 if (acc[unit.character_id]) {
                     acc[unit.character_id].totalGames += 1;
                     acc[unit.character_id].placements.push(player.placement);
-                    if (player.placement === 1) { 
+                    if (player.placement <= 4) { // Top 4 is considered a win
                         acc[unit.character_id].wins += 1;
                     }
                 } else {
                     acc[unit.character_id] = {
                         totalGames: 1,
                         placements: [player.placement],
-                        wins: player.placement <= 1 ? 1 : 0
+                        wins: player.placement <= 4 ? 1 : 0
                     };
                 }
             });
             return acc;
         }, {});
-        
+
         const championRanking = Object.entries(championData).map(([championId, { totalGames, wins, placements }]) => ({
             championId,
-            winrate: (((wins / totalGames) * 100).toFixed(2)) + '%',
+            winrate: ((wins / totalGames) * 100).toFixed(2),
             placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2)
         }));
 
         return championRanking.sort((a, b) => a.placement - b.placement);
-        
+
     } catch (error) {
-        console.error('Error fetching challenger players:', error.response ? error.response.data : error.message);
-        res.status(500).send('Error fetching challenger players');
+        console.error(`Error fetching ${rank} players:`, error.message);
+        throw new Error(`Error fetching ${rank} players: ${error.message}`);
     }
 };
 
