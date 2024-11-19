@@ -1,5 +1,5 @@
-const { shortRegionClient } = require('../../../utils/generalClients.js');
-const { regions, regionMapping } = require('../../../utils/regionData.js');
+const { shortRegionClient } = require('../generalClients.js');
+const { regions, regionMapping } = require('../regionData.js');
 
 const fetchSummonerIds = async (rank) => {
     const allSummonerIds = await Promise.all(
