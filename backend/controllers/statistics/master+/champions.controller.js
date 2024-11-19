@@ -1,4 +1,4 @@
-const championsClient = require('../../../utils/statisticsClients/championsClient.js');
+const championsClient = require('../../../utils/statisticsUtils/championsUtils.js');
 
 const getChampionData = async (req, res) => {
     const { rank } = req.params;

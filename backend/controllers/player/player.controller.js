@@ -1,4 +1,4 @@
-const { fullRegionClient } = require('../../utils/generalClients');
+const { fullRegionClient } = require('../../utils/generalUtils');
 const { regionMapping } = require('../../utils/regionData');
 
 const fetchPlayerPuuid = async (gameName, tagLine, region) => {
@@ -21,9 +21,8 @@ const playerPuuid = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
     try {
         const playerPuuid = await fetchPlayerPuuid(gameName, tagLine, region);
-        if (!playerPuuid) {
-            return res.status(404).send('Player not found');
-        }
+        if (!playerPuuid) {return res.status(404).send('Player not found')}
+
         res.json({ puuid: playerPuuid });
     } catch (error) {
         console.error('Error fetching player PUUID:', error.response ? error.response.data : error.message);
@@ -35,13 +34,11 @@ const playerMatches = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
     try {
         const puuid = await fetchPlayerPuuid(gameName, tagLine, region);
-        if (!puuid) {
-            return res.status(404).send('Player not found');
-        }
+        if (!puuid) {return res.status(404).send('Player not found')}
+
         const playerMatches = await fetchPlayerMatches(puuid, region);
-        if (!playerMatches) {
-            return res.status(404).send('Matches not found');
-        }
+        if (!playerMatches.length === 0) {return res.status(404).send('Matches not found')}
+
         res.json({ matches: playerMatches });
     } catch (error) {
         console.error('Error fetching player matches:', error.response ? error.response.data : error.message);

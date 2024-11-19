@@ -1,4 +1,4 @@
-const traitsClient = require('../../../utils/statisticsClients/traitsClient');
+const traitsClient = require('../../../utils/statisticsUtils/traitsUtils');
 
 const getTraitsData = async (req, res) => {
     const { rank } = req.params;

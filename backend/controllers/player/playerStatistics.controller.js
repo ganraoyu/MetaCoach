@@ -1,4 +1,4 @@
-const { fullRegionClient } = require('../../utils/generalClients');
+const { fullRegionClient } = require('../../utils/generalUtils');
 
 const getPlayerWinRate = async (req, res) => {
 
