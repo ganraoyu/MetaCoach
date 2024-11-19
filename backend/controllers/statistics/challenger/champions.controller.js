@@ -1,4 +1,4 @@
-const championClient = require('../utils/championClient.js');
+const championClient = require('../utils/championsClient.js');
 
 
 const getChallengerChampionData = async (req, res) => {
