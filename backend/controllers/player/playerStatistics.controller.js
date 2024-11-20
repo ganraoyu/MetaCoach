@@ -1,4 +1,5 @@
-const { fullRegionClient } = require('../../utils/generalUtils');
+const { fullRegionClient } = require('../../utils/generalUtils.js');
+const { fetchPlayerMatches } = require('../../utils/playerUtils.js')
 
 const getPlayerWinRate = async (req, res) => {
     try{
@@ -10,7 +11,6 @@ const getPlayerWinRate = async (req, res) => {
 }
 
 const getPlayerMostPlayedTraits = async (req, res) => {
- 
     try{
 
     } catch (error) {

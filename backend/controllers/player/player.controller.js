@@ -20,19 +20,8 @@ const playerMatches = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
     
     try {
-        const puuid = await fetchPlayerPuuid(gameName, tagLine, region);
-        if (!puuid) {return res.status(404).send('Player not found')}
-
-        const playerMatchIds = await fetchPlayerMatches(puuid, region);
-        if (!playerMatchIds.length === 0) {return res.status(404).send('Matches not found')}
-
-        const matchDetailsPromise = playerMatchIds.map(matchId => {
-            const client = fullRegionClient(region);
-            return client.get(`/tft/match/v1/matches/${matchId}`);
-        });
-        
-        const matchDetaiResponses = await Promise.all(matchDetailsPromise)
-        const playerMatchDetails = matchDetaiResponses.map(response => response.data);
+        const playerMatchDetails = await fetchPlayerMatches(gameName, tagLine, region);
+        if (!playerMatchDetails.length === 0) {return res.status(404).send('Matches not found')}
 
         res.json({ matches: playerMatchDetails });
     } catch (error) {
