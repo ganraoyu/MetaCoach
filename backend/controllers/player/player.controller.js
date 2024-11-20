@@ -24,7 +24,7 @@ const playerMatches = async (req, res) => {
         if (!puuid) {return res.status(404).send('Player not found')}
 
         const playerMatchIds = await fetchPlayerMatches(puuid, region);
-        if (!playerMatches.length === 0) {return res.status(404).send('Matches not found')}
+        if (!playerMatchIds.length === 0) {return res.status(404).send('Matches not found')}
 
         const matchDetailsPromise = playerMatchIds.map(matchId => {
             const client = fullRegionClient(region);

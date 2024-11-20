@@ -14,4 +14,5 @@ const fetchPlayerMatches = async (puuid, region) => {
     const matchIds = response.data;
     return matchIds
 }
+
 module.exports = { fetchPlayerPuuid, fetchPlayerMatches }
