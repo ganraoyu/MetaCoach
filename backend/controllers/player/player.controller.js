@@ -1,25 +1,11 @@
 const { fullRegionClient } = require('../../utils/generalUtils');
+const { fetchPlayerPuuid, fetchPlayerMatches} = require('../../utils/playerUtils.js')
 const { regionMapping } = require('../../utils/regionData');
-
-const fetchPlayerPuuid = async (gameName, tagLine, region) => {
-    const client = fullRegionClient(region);
-    const response = await client.get(`/riot/account/v1/accounts/by-riot-id/${gameName}/${tagLine}`);
-    const puuid = response.data.puuid;
-    if (!puuid) { return null; }
-    return puuid;
-};
-
-const fetchPlayerMatches = async (puuid, region) => {
-    const client = fullRegionClient(region);
-    const response = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-    const matchIds = response.data;
-    if (!matchIds || matchIds.length === 0) { return null; }
-    return matchIds;
-};
 
 const playerPuuid = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
     try {
+        const client = fetchPlayerPuuid(gameName, tagLine, region) 
         const playerPuuid = await fetchPlayerPuuid(gameName, tagLine, region);
         if (!playerPuuid) {return res.status(404).send('Player not found')}
 
@@ -32,14 +18,23 @@ const playerPuuid = async (req, res) => {
 
 const playerMatches = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
+    
     try {
         const puuid = await fetchPlayerPuuid(gameName, tagLine, region);
         if (!puuid) {return res.status(404).send('Player not found')}
 
-        const playerMatches = await fetchPlayerMatches(puuid, region);
+        const playerMatchIds = await fetchPlayerMatches(puuid, region);
         if (!playerMatches.length === 0) {return res.status(404).send('Matches not found')}
 
-        res.json({ matches: playerMatches });
+        const matchDetailsPromise = playerMatchIds.map(matchId => {
+            const client = fullRegionClient(region);
+            return client.get(`/tft/match/v1/matches/${matchId}`);
+        });
+        
+        const matchDetaiResponses = await Promise.all(matchDetailsPromise)
+        const playerMatchDetails = matchDetaiResponses.map(response => response.data);
+
+        res.json({ matches: playerMatchDetails });
     } catch (error) {
         console.error('Error fetching player matches:', error.response ? error.response.data : error.message);
         res.status(500).send('Error fetching player matches');
