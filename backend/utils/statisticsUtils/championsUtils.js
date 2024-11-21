@@ -45,19 +45,19 @@ const fetchMatchDetails = async (matchIds) => {
     return matchDetailsResponses.map(response => response.data);
 };
 
-const processPlayerData = (matchDetails) => {
-    const playerData = matchDetails.flatMap(response =>
-        response.info.participants.map(participant => ({
-            placement: participant.placement,
-            units: participant.units.map(unit => ({
-                character_id: unit.character_id,
-                items: unit.itemNames,
-                tier: unit.tier
+    const processPlayerData = (matchDetails) => {
+        const playerData = matchDetails.flatMap(response =>
+            response.info.participants.map(participant => ({
+                placement: participant.placement,
+                units: participant.units.map(unit => ({
+                    character_id: unit.character_id,
+                    items: unit.itemNames,
+                    tier: unit.tier
+                }))
             }))
-        }))
-    );
-    return playerData;
-};
+        );
+        return playerData;
+    };
 
 const calculateChampionData = (playerData) => {
     const championData = playerData.reduce((acc, player) => {

@@ -6,8 +6,8 @@ const getChampionData = async (req, res) => {
         const championRanking = await championsClient(rank);
         res.json(championRanking);
     } catch (error) {
-        console.error('Error fetching challenger players:', error.message);
-        res.status(500).send('Error fetching challenger players');
+        console.error(`Error fetching ${rank} players:`, error.message);
+        res.status(500).send(`Error fetching ${rank} players`);
     }
 };
 

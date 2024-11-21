@@ -45,17 +45,50 @@ const fetchMatchDetails = async (matchIds) => {
     return matchDetailsResponses.map(response => response.data);
 };
 
+const processPlayerData = async (matchDetails) => {
+    const playerData = matchDetails.flatMap(response => 
+        response.info.participants.map(participant => ({
+            traits: participant.traits.map(trait => ({
+                traitName: trait.name,
+            }))
+        }))
+    );
+    return playerData;
+};
+
+const calculateTraitData = async (playerData) => {
+    const traitData = playerData.reduce((acc, player) => {
+        player.traits.forEach(trait => {
+            if (acc[trait.traitName]) {
+                acc[trait.traitName] += 1; 
+            } else {
+                acc[trait.traitName] = 1; 
+            }
+        });
+        return acc;
+    }, {}); 
+
+    const sortedTraitData = Object.entries(traitData)
+        .map(([name, count]) => ({ name, count }))
+        .sort((a, b) => b.count - a.count); 
+
+    return sortedTraitData;
+};
+
+
 const getTraitData = async (rank) => {
     try {
         const summonerIds = await fetchSummonerIds(rank);
         const summonerPuuids = await fetchSummonerPuuids(summonerIds);
         const matchHistory = await fetchMatchHistory(summonerPuuids);
         const matchDetails = await fetchMatchDetails(matchHistory);
+        const playerData = await    processPlayerData(matchDetails)
+        const traitData = await calculateTraitData(playerData)
 
-        return matchDetails;
+        return traitData;
     } catch (error) {
-        console.error(error);
+        console.error(error);   
     }
 };
 
-module.exports = getTraitData;
+module.exports =  getTraitData;

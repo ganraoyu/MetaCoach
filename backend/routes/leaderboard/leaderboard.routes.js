@@ -2,8 +2,8 @@ const express = require('express');
 const router = express.Router();
 const { getChallengerLeaderboard, getMasterLeaderboard, getGrandmasterLeaderboard } = require('../../controllers/leaderboard/leaderboard.controller.js');
     
-router.get('/challenger/:region', getChallengerLeaderboard);
-router.get('/grandmaster/:region', getGrandmasterLeaderboard);
-router.get('/master/:region', getMasterLeaderboard);
+router.get('/:region/challenger', getChallengerLeaderboard);
+router.get('/:region/grandmaster', getGrandmasterLeaderboard);
+router.get('/:region/master', getMasterLeaderboard);
 
 module.exports = router;
