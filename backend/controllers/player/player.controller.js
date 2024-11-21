@@ -5,7 +5,6 @@ const { regionMapping } = require('../../utils/regionData');
 const playerPuuid = async (req, res) => {
     const { gameName, tagLine, region } = req.params;
     try {
-        const client = fetchPlayerPuuid(gameName, tagLine, region) 
         const playerPuuid = await fetchPlayerPuuid(gameName, tagLine, region);
         if (!playerPuuid) {return res.status(404).send('Player not found')}
 
