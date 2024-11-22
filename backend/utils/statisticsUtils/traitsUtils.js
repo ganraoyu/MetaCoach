@@ -20,7 +20,7 @@ const fetchSummonerPuuids = async (summonerData) => {
             const response = await client.get(`/tft/summoner/v1/summoners/${summonerId}`);
             return { puuid: response.data.puuid, region };
         })
-    );
+    );[]
     return summonerPuuid.flat();
 };
 
@@ -89,6 +89,6 @@ const getTraitData = async (rank) => {
     } catch (error) {
         console.error(error);   
     }
-};
+};  
 
 module.exports =  getTraitData;

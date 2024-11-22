@@ -14,14 +14,14 @@ const fetchSummonerIds = async (rank) => {
 };
 
 const fetchSummonerPuuids = async (summonerData) => {
-    const summonerPuuid = await Promise.all(
+    const summonerPuuids = await Promise.all(
         summonerData.map(async ({ summonerId, region }) => {
             const client = shortRegionClient(region);
             const response = await client.get(`/tft/summoner/v1/summoners/${summonerId}`);
             return { puuid: response.data.puuid, region };
         })
     );
-    return summonerPuuid.flat();
+    return summonerPuuids.flat();
 };
 
 const fetchMatchHistory = async (puuids) => {
@@ -31,18 +31,19 @@ const fetchMatchHistory = async (puuids) => {
             const client = shortRegionClient(matchRegion);
             const response = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
             return response.data.slice(0, 1).map(matchId => ({ matchId, region: matchRegion }));
-        })
+        }) 
     );
     return puuidMatchHistory.flat();
 };
 
 const fetchMatchDetails = async (matchIds) => {
-    const matchDetailsPromises = matchIds.map(({ matchId, region }) => {
+    const matchDetailsPromises = await Promise.all( 
+        matchIds.map(({ matchId, region }) => {
         const client = shortRegionClient(region);
         return client.get(`/tft/match/v1/matches/${matchId}`);
-    });
-    const matchDetailsResponses = await Promise.all(matchDetailsPromises);
-    return matchDetailsResponses.map(response => response.data);
+        })
+    )
+    return matchDetailsPromises.map(response => response.data);
 };
 
     const processPlayerData = (matchDetails) => {
