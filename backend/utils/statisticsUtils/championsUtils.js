@@ -6,6 +6,7 @@ const fetchSummonerIds = async (rank, division) => {
         regions.map(async (region) => {
             let response;
             const client = shortRegionClient(region);
+            
             if(rank === "master" || rank === "grandmaster" || rank === "challenger"){
                 response = await client.get(`/tft/league/v1/${rank}`);            
                 const players = response.data.entries.slice(0, 1);
