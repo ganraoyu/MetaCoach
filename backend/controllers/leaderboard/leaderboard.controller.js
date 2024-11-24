@@ -27,7 +27,6 @@ const getAboveMasterLeaderboard = async (endpoint, res, rank, region) => {
 };
 
 
-
 const getChallengerLeaderboard = (req, res) => {
     const region = req.params.region;
     getAboveMasterLeaderboard('challenger', res, 'Challenger', region);

@@ -94,7 +94,8 @@ const calculateChampionRanking = (championData) => {
     const championRanking = Object.entries(championData).map(([championId, { totalGames, wins, placements }]) => ({
         championId,
         winrate: ((wins / totalGames) * 100).toFixed(2),
-        placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2)
+        placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2),
+        totalGames
     }));
     return championRanking.sort((a, b) => a.placement - b.placement);
 };
