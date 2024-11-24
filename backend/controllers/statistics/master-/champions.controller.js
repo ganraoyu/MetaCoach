@@ -3,6 +3,8 @@ const championsClient = require('../../../utils/statisticsUtils/championsUtils.j
 const getBelowMasterChampionData = async (req, res) => {
     const { rank, division } = req.params;
 
+    console.log("Rank:", rank, "Division:", division);
+
     try{
         const championRanking = await championsClient(rank, division)
         res.json({championRanking})

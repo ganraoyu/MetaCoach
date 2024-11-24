@@ -11,16 +11,15 @@ const fetchSummonerIds = async (rank, division) => {
                 const players = response.data.entries.slice(0, 1);
                 return players.map(player => ({ summonerId: player.summonerId, region }));
             } else {
-                console.log(`Making request for rank: ${rank}, division: ${division}`);  // Debug log for division
-                response = await client.get(`/tft/league/v1/entries/${rank}/${division}?queue=RANKED_TFT&page=1`);
-                const players = response.data.entries.slice(0, 1);
+                console.log(`Making request for rank: ${rank}, division: ${division}`);  
+                response = await client.get(`/tft/league/v1/entries/${rank.toUpperCase()}/${division.toUpperCase()}?queue=RANKED_TFT&page=1`);
+                const players = response.data.slice(0, 1);
                 return players.map(player => ({ summonerId: player.summonerId, region }));
             }         
         })
     );
     return allSummonerIds.flat();
 };
-
 
 const fetchSummonerPuuids = async (summonerData) => {
     const summonerPuuids = await Promise.all(
@@ -100,9 +99,9 @@ const calculateChampionRanking = (championData) => {
     return championRanking.sort((a, b) => a.placement - b.placement);
 };
 
-const getChampionData = async (rank) => {
+const getChampionData = async (rank, division) => {
     try {
-        const summonerIds = await fetchSummonerIds(rank);
+        const summonerIds = await fetchSummonerIds(rank, division);
         if (summonerIds.length === 0) throw new Error(`No ${rank} players found`);
 
         const summonerPuuids = await fetchSummonerPuuids(summonerIds);
@@ -128,3 +127,4 @@ const getChampionData = async (rank) => {
 };
 
 module.exports = getChampionData;
+
