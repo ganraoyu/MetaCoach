@@ -23,4 +23,4 @@ const getBelowMasterChampionData = async (req, res) => {
     }
 }
 
-module.exports = { getBelowMasterChampionData, fetchSummonerIds }
+module.exports = { getBelowMasterChampionData }
