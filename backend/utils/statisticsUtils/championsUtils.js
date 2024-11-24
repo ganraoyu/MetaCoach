@@ -1,6 +1,17 @@
 const { shortRegionClient } = require('../generalUtils.js');
 const { regions, regionMapping } = require('../regionData.js');
 
+const fetchSummonerIds = async (rank) => {
+    const allSummonerIds = await Promise.all(
+        regions.map(async (region) => {
+            const client = shortRegionClient(region);
+            const response = await client.get(`/tft/league/v1/${rank}`);
+            const players = response.data.entries.slice(0, 1);
+            return players.map(player => ({ summonerId: player.summonerId, region }));
+        })
+    );
+    return allSummonerIds.flat();
+};
 
 const fetchSummonerPuuids = async (summonerData) => {
     const summonerPuuids = await Promise.all(
