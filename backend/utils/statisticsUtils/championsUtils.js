@@ -7,15 +7,15 @@ const fetchSummonerIds = async (rank, division) => {
             let response;
             const client = shortRegionClient(region);
             if(rank === "master" || rank === "grandmaster" || rank === "challenger"){
-                const response = await client.get(`/tft/league/v1/${rank}`);            
+                response = await client.get(`/tft/league/v1/${rank}`);            
                 const players = response.data.entries.slice(0, 1);
                 return players.map(player => ({ summonerId: player.summonerId, region }));
             } else {
-                const response = await client.get(`/tft/league/v1/entries/${rank}/${division}?queue=RANKED_TFT&page=1`);
+                console.log(`Making request for rank: ${rank}, division: ${division}`);  // Debug log for division
+                response = await client.get(`/tft/league/v1/entries/${rank}/${division}?queue=RANKED_TFT&page=1`);
                 const players = response.data.entries.slice(0, 1);
                 return players.map(player => ({ summonerId: player.summonerId, region }));
-            }
-
+            }         
         })
     );
     return allSummonerIds.flat();
