@@ -1,6 +1,6 @@
 const traitsClient = require('../../../utils/statisticsUtils/traitsUtils');
 
-const getTraitsData = async (req, res) => {
+const getAboveMasterTraitsData = async (req, res) => {
     const { rank } = req.params;
     try {
         const getTraitsRanking = await traitsClient(rank);
@@ -11,5 +11,5 @@ const getTraitsData = async (req, res) => {
     }
 }
 
-module.exports = { getTraitsData };
+module.exports = { getAboveMasterTraitsData };
 

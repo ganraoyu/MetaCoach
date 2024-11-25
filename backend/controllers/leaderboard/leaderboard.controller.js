@@ -43,7 +43,6 @@ const getBelowMasterLeaderboards = async (res, region, rank, division) => {
                 losses: losses,
             };
         });
-
         res.json({playerData})
     } catch(error){
         console.log(error)

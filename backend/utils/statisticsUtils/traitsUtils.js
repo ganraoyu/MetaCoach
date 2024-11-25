@@ -1,13 +1,21 @@
 const { shortRegionClient } = require('../generalUtils.js');
 const { regions, regionMapping } = require('../regionData.js');
 
-const fetchSummonerIds = async (rank) => {
+const fetchSummonerIds = async (rank, division) => {
     const allSummonerIds = await Promise.all(
         regions.map(async (region) => {
             const client = shortRegionClient(region);
-            const response = await client.get(`/tft/league/v1/${rank}`);
-            const players = response.data.entries.slice(0, 1);
-            return players.map(player => ({ summonerId: player.summonerId, region }));
+            let response;
+
+            if(rank === "master" || rank === "grandmaster" || rank === "challenger"){
+                response = await client.get(`/tft/league/v1/${rank}`);
+                const players = response.data.entries.slice(0, 1);
+                return players.map(player => ({ summonerId: player.summonerId, region }));
+            } else {
+                response = await client.get(`/tft/league/v1/entries/${rank.toUpperCase()}/${division.toUpperCase()}?queue=RANKED_TFT&page=1`);
+                const players = response.data.slice(0, 1);
+                return players.map(player => ({ summonerId: player.summonerId, region }));
+            }
         })
     );
     return allSummonerIds.flat();
@@ -76,9 +84,9 @@ const calculateTraitData = async (playerData) => {
 };
 
 
-const getTraitData = async (rank) => {
+const getTraitData = async (rank, division) => {
     try {
-        const summonerIds = await fetchSummonerIds(rank);
+        const summonerIds = await fetchSummonerIds(rank, division);
         const summonerPuuids = await fetchSummonerPuuids(summonerIds);
         const matchHistory = await fetchMatchHistory(summonerPuuids);
         const matchDetails = await fetchMatchDetails(matchHistory);
