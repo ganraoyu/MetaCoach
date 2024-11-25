@@ -34,3 +34,24 @@ const fetchMatchHistory = async (puuids) => {
         })
     )
 }
+
+const fetchMatchDetails = async (matchIds) => {
+    const matchDetailsPromises = await Promise.all(
+        matchIds.map(async ({ matchId, region}) => {
+            const client = shortRegionClient(region) 
+            const response = await client.get(`/tft/match/v1/matches/${matchId}`);
+            return response
+        })
+    );
+    return matchDetailsPromises.map(response => response.data)
+};
+
+const getItemData = async(rank, division) => {
+    try{
+
+    } catch(error){
+        console.log(error)
+    }
+}
+
+module.exports = getItemData 
