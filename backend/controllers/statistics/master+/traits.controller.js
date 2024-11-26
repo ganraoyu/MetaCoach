@@ -2,6 +2,7 @@ const traitsClient = require('../../../utils/statisticsUtils/traitsUtils');
 
 const getAboveMasterTraitsData = async (req, res) => {
     const { rank } = req.params;
+    
     try {
         const getTraitsRanking = await traitsClient(rank);
         res.json(getTraitsRanking);

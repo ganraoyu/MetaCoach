@@ -5,7 +5,7 @@ const getAboveMasterItemsData = async (req, res) => {
 
     try{
         console.log(rank)
-        const getItemsRanking = await itemsClient(rank, division)
+        const getItemsRanking = await itemsClient(rank)
         res.json(getItemsRanking)
     } catch (error){
         console.log(error)

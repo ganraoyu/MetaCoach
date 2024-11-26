@@ -14,6 +14,7 @@ router.get('/:rank/traits', getAboveMasterTraitsData);
 router.get('/:rank/items', getAboveMasterItemsData);
 
 router.get('/:rank/:division/champions', getBelowMasterChampionData);
-router.get('/:rank/:division/traits', getBelowMasterTraitsData)
-router.get('/:rank/:division/items', getBelowMasterItemsData)
+router.get('/:rank/:division/traits', getBelowMasterTraitsData);
+router.get('/:rank/:division/items', getBelowMasterItemsData);
+
 module.exports = router;
