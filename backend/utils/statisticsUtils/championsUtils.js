@@ -123,8 +123,8 @@ const getChampionData = async (rank, division) => {
 
         return championRanking;
     } catch (error) {
-        console.error(`Error fetching ${rank} data:`, error.message);
-        throw new Error(`Error fetching ${rank} data: ${error.message}`);
+        console.error('Error in getItemData:', error.message);
+        throw new Error('Failed to fetch item data');
     }
 };
 

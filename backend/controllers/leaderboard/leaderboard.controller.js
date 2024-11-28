@@ -33,7 +33,7 @@ const getBelowMasterLeaderboards = async (res, region, rank, division) => {
 
         const playerData = response.data.map((entry, index) => {
             const { summonerId, wins, losses, leaguePoints } = entry; 
-        
+            
             return {
                 rank: index + 1, 
                 leaguePoints:leaguePoints,
