@@ -25,34 +25,34 @@ const fetchSummonerIds = async (rank, division) => {
 const fetchSummonerPuuids = async (summonerData) => {
     const summonerPuuids = await Promise.all(
         summonerData.map(async ({ summonerId, region }) => {
-            const client = shortRegionClient(region)
+            const client = shortRegionClient(region);
             const response = await client.get(`/tft/summoner/v1/summoners/${summonerId}`);
-            return { puuid: response.data.puuid, region }
+            return { puuid: response.data.puuid, region };
         })
-    )
+    );
     return summonerPuuids.flat();
-}
+};
 
 const fetchMatchHistory = async (puuids) => {
     const puuidMatchHistory = await Promise.all(
-        puuids.map(async ({ puuid, region}) => {
-            const matchRegion = regionMapping[region]
+        puuids.map(async ({ puuid, region }) => {
+            const matchRegion = regionMapping[region];
             const client = shortRegionClient(matchRegion);
             const response = await client.get(`/tft/match/v1/matches/by-puuid/${puuid}/ids`);
-            return response.data.slice(0,1).map(matchId => ({ matchId, matchRegion }))
-        })
-    )
+            return response.data.slice(0, 1).map(matchId => ({ matchId, region: matchRegion }));
+        }) 
+    );
     return puuidMatchHistory.flat();
-}
+};
 
 const fetchMatchDetails = async (matchIds) => {
-    const matchDetailsPromises = await Promise.all(
-        matchIds.map(async ({ matchId, region}) => {
-            const client = shortRegionClient(region) 
-            return client.get(`/tft/match/v1/matches/${matchId}`);
+    const matchDetailsPromises = await Promise.all( 
+        matchIds.map(({ matchId, region }) => {
+        const client = shortRegionClient(region);
+        return client.get(`/tft/match/v1/matches/${matchId}`);
         })
-    );
-    return matchDetailsPromises.map(response => response.data)
+    )
+    return matchDetailsPromises.map(response => response.data);
 };
 
 const getItemData = async (rank, division) => {
