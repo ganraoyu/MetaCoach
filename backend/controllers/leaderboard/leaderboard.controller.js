@@ -2,10 +2,10 @@ const { shortRegionClient } = require('../../utils/generalUtils');
 
 const ranksBelowMaster = ["DIAMOND", "EMERALD", "PLATINUM", "GOLD", "SILVER", "BRONZE"]
 
-const getAboveMasterLeaderboards = async (endpoint, res, rank, region) => {
+const getAboveMasterLeaderboards = async (endpoint, res, rank, region, mode) => {
     try {
         const client = shortRegionClient(region);
-        const response = await client.get(`/tft/league/v1/${endpoint}`);
+        const response = await client.get(`/tft/league/v1/${endpoint}?queue=${mode}`);
         if (!region){return res.status(400).send('Please provide a region as a path parameter');}
 
         const playerData = Object.entries(response.data.entries).map(([index, entry]) => {
@@ -51,15 +51,18 @@ const getBelowMasterLeaderboards = async (res, region, rank, division) => {
 
 const getChallengerLeaderboard = (req, res) => {
     const region = req.params.region;
-    getAboveMasterLeaderboards('challenger', res, 'Challenger', region);
+    const mode = req.params.mode
+    getAboveMasterLeaderboards('challenger', res, 'Challenger', region, mode);
 };
 const getGrandmasterLeaderboard = (req, res) => {
     const region = req.params.region;
-    getAboveMasterLeaderboards('grandmaster', res, 'Grandmaster', region);
+    const mode = req.params.mode
+    getAboveMasterLeaderboards('grandmaster', res, 'Grandmaster', region, mode);
 }
 const getMasterLeaderboard = (req, res) => {
     const region = req.params.region;
-    getAboveMasterLeaderboards('master', res, 'Master', region);
+    const mode = req.params.mode
+    getAboveMasterLeaderboards('master', res, 'Master', region, mode);
 }
 
 const getBelowMasterLeaderboard = (req, res) => {

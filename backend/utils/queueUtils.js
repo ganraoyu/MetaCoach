@@ -1,0 +1,1 @@
+const queues = [RANK_TFT, RANKED_TFT_DOUBLE_UP]
