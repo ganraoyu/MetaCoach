@@ -1,11 +1,13 @@
 const { shortRegionClient } = require('../../utils/generalUtils');
+const { queues, queueMapping } = require('../../utils/queueData.js')
 
 const ranksBelowMaster = ["DIAMOND", "EMERALD", "PLATINUM", "GOLD", "SILVER", "BRONZE"]
 
 const getAboveMasterLeaderboards = async (endpoint, res, rank, region, mode) => {
     try {
+        const queue = queueMapping[mode];
         const client = shortRegionClient(region);
-        const response = await client.get(`/tft/league/v1/${endpoint}?queue=${mode}`);
+        const response = await client.get(`/tft/league/v1/${endpoint}?queue=${queue}`);
         if (!region){return res.status(400).send('Please provide a region as a path parameter');}
 
         const playerData = Object.entries(response.data.entries).map(([index, entry]) => {
@@ -26,10 +28,11 @@ const getAboveMasterLeaderboards = async (endpoint, res, rank, region, mode) => 
     }
 };
 
-const getBelowMasterLeaderboards = async (res, region, rank, division) => {
+const getBelowMasterLeaderboards = async (res, region, rank, division, mode) => {
     try{
+        const queue = queueMapping[mode];
         const client = shortRegionClient(region)
-        const response = await client.get(`/tft/league/v1/entries/${rank.toUpperCase()}/${division.toUpperCase()}?queue=RANKED_TFT&page=1`);
+        const response = await client.get(`/tft/league/v1/entries/${rank.toUpperCase()}/${division.toUpperCase()}?queue=${queue}`);
 
         const playerData = response.data.map((entry, index) => {
             const { summonerId, wins, losses, leaguePoints } = entry; 
@@ -66,9 +69,9 @@ const getMasterLeaderboard = (req, res) => {
 }
 
 const getBelowMasterLeaderboard = (req, res) => {
-    const { region, rank, division } = req.params
+    const { region, rank, division, mode } = req.params
     console.log(region, rank, division)
-    getBelowMasterLeaderboards(res, region, rank, division)
+    getBelowMasterLeaderboards(res, region, rank, division, mode)
 }
 
 module.exports = { getChallengerLeaderboard, getGrandmasterLeaderboard, getMasterLeaderboard, getBelowMasterLeaderboard };

@@ -5,6 +5,6 @@ const { getChallengerLeaderboard, getMasterLeaderboard, getGrandmasterLeaderboar
 router.get('/:region/:mode/challenger', getChallengerLeaderboard);
 router.get('/:region/:mode/grandmaster', getGrandmasterLeaderboard);
 router.get('/:region/:mode/master', getMasterLeaderboard);
-router.get('/:region/:rank/:division', getBelowMasterLeaderboard)
+router.get('/:region/:mode/:rank/:division', getBelowMasterLeaderboard)
 
 module.exports = router;
