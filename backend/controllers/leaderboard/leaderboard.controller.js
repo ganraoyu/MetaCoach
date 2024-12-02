@@ -1,8 +1,6 @@
 const { shortRegionClient } = require('../../utils/generalUtils');
 const { queues, queueMapping } = require('../../utils/queueData.js')
 
-const ranksBelowMaster = ["DIAMOND", "EMERALD", "PLATINUM", "GOLD", "SILVER", "BRONZE"]
-
 const getAboveMasterLeaderboards = async (endpoint, res, rank, region, mode) => {
     try {
         const queue = queueMapping[mode];

@@ -55,14 +55,29 @@ const fetchMatchDetails = async (matchIds) => {
     return matchDetailsPromises.map(response => response.data);
 };
 
+const processPlayerData = (matchDetails) => {
+    const playerData = matchDetails.flatMap(response => 
+        response.info.participants.map(participant => ({
+            placement: participant.placement,
+            items: participant.units
+            .filter(unit => unit.itemNames && unit.itemNames.length > 0) 
+            .map(unit => ({
+                items: unit.itemNames
+            }))
+        }))
+    );
+    return playerData;
+};
+
 const getItemData = async (rank, division) => {
     try{
         const summonerIds = await fetchSummonerIds(rank, division);
         const summonerPuuids = await fetchSummonerPuuids(summonerIds);
         const matchHistory = await fetchMatchHistory(summonerPuuids);
         const matchDetails = await fetchMatchDetails(matchHistory);
+        const playerData = processPlayerData(matchDetails)
 
-        return matchDetails 
+        return playerData
     } catch(error){
         console.log(error)
     }
