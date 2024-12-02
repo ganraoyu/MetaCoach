@@ -61,9 +61,7 @@ const processPlayerData = (matchDetails) => {
             placement: participant.placement,
             items: participant.units
             .filter(unit => unit.itemNames && unit.itemNames.length > 0) 
-            .map(unit => ({
-                items: unit.itemNames
-            }))
+            .map(unit => ({items: unit.itemNames}))
         }))
     );
     return playerData;
@@ -71,11 +69,28 @@ const processPlayerData = (matchDetails) => {
 
 const calculateItemRanking = (playerData) => {
     const itemData = playerData.reduce((acc, player) => {
-        player.units.forEach(unit => {
-            
-        })
-    })
-}
+        player.items.forEach(itemGroup => { 
+            itemGroup.items.forEach(itemName => { 
+                if (acc[itemName]) {
+                    acc[itemName].totalGames += 1;
+                    acc[itemName].placements.push(player.placement);
+                    if (player.placement === 1) {
+                        acc[itemName].wins += 1;
+                    }
+                } else {
+                    acc[itemName] = {
+                        totalGames: 1,
+                        placements: [player.placement],
+                        wins: player.placement === 1 ? 1 : 0
+                    };
+                }
+            });
+        });
+        return acc;
+    }, {});
+    return itemData;
+};
+
 const getItemData = async (rank, division) => {
     try{
         const summonerIds = await fetchSummonerIds(rank, division);
@@ -84,8 +99,9 @@ const getItemData = async (rank, division) => {
         const matchDetails = await fetchMatchDetails(matchHistory);
 
         const playerData = processPlayerData(matchDetails)
+        const itemRanking = calculateItemRanking(playerData)
 
-        return playerData
+        return itemRanking
     } catch(error){
         console.log(error)
     }
