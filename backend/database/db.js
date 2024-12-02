@@ -8,7 +8,6 @@ console.log(process.env.DB_USER);
 console.log(process.env.DB_HOST)
 console.log(process.env.DB_DATABASE);
 console.log(process.env.DB_PASSWORD);
-console.log(process.env.DB_PORT);
 
 
 const client = new Client({
@@ -19,3 +18,4 @@ const client = new Client({
     port: 5000,
 })
 
+client.connect().then(()=> console.log("connected"))

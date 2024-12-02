@@ -67,7 +67,7 @@ const processPlayerData = (matchDetails) => {
     return playerData;
 };
 
-const calculateItemRanking = (playerData) => {
+const calculateItemData = (playerData) => {
     const itemData = playerData.reduce((acc, player) => {
         player.items.forEach(itemGroup => { 
             itemGroup.items.forEach(itemName => { 
@@ -91,6 +91,17 @@ const calculateItemRanking = (playerData) => {
     return itemData;
 };
 
+const calculateItemRanking = (itemData) => {
+    const itemRanking = Object.entries(itemData).map(([itemId, { totalGames, wins, placements }]) => ({
+        itemId,
+        winrate: ((wins / totalGames) * 100).toFixed(2),
+        placement: (placements.reduce((sum, p) => sum + p, 0) / totalGames).toFixed(2),
+        totalGames
+    }));
+    return itemRanking.sort((a, b) => a.placement - b.placement);
+};
+
+
 const getItemData = async (rank, division) => {
     try{
         const summonerIds = await fetchSummonerIds(rank, division);
@@ -99,9 +110,10 @@ const getItemData = async (rank, division) => {
         const matchDetails = await fetchMatchDetails(matchHistory);
 
         const playerData = processPlayerData(matchDetails)
-        const itemRanking = calculateItemRanking(playerData)
+        const itemData = calculateItemData(playerData)
+        const itemRankings = calculateItemRanking(itemData)
 
-        return itemRanking
+        return itemRankings
     } catch(error){
         console.log(error)
     }
