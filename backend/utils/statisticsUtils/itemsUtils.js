@@ -69,12 +69,20 @@ const processPlayerData = (matchDetails) => {
     return playerData;
 };
 
+const calculateItemRanking = (playerData) => {
+    const itemData = playerData.reduce((acc, player) => {
+        player.units.forEach(unit => {
+            
+        })
+    })
+}
 const getItemData = async (rank, division) => {
     try{
         const summonerIds = await fetchSummonerIds(rank, division);
         const summonerPuuids = await fetchSummonerPuuids(summonerIds);
         const matchHistory = await fetchMatchHistory(summonerPuuids);
         const matchDetails = await fetchMatchDetails(matchHistory);
+
         const playerData = processPlayerData(matchDetails)
 
         return playerData
