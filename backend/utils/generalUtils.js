@@ -24,5 +24,4 @@ const shortRegionClient = (shortRegion) => {
     })
 };
 
-console.log(RIOT_API_KEY)
 module.exports = { fullRegionClient, shortRegionClient };

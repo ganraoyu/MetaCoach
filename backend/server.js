@@ -8,6 +8,9 @@ const leaderboardRoutes = require('./routes/leaderboard/leaderboard.routes.js');
 const playerStatsRoutes = require('./routes/player/playerStatistics.routes.js');
 const statisticsRoutes = require('./routes/statistics/statistics.routes.js');
 
+const { client } = require('./database/db.js')
+
+
 dotenv.config({ path: path.resolve(__dirname, '../.env') });
 
 const PORT = process.env.PORT || 3000;
@@ -20,3 +23,6 @@ app.use('/statistics', statisticsRoutes);
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });     
+
+console.log('API-KEY', process.env.RIOT_API_KEY)
+client.connect().then(()=> console.log("PostgreSQL connected"))
