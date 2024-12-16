@@ -1,9 +1,10 @@
 class Champion {
-    constructor(name, statsByStarLevel, attackSpeed, ability, range) {
+    constructor(name, traits, statsByStarLevel, attackSpeed, abilityName, range) {
         this.name = name;
+        this.traits = traits;
         this.statsByStarLevel = statsByStarLevel; 
         this.attackSpeed = attackSpeed; 
-        this.ability = ability; 
+        this.abilityName = abilityName; 
         this.range = range;
         this.starLevel = 1; 
     }
@@ -22,10 +23,10 @@ class Champion {
     }
 }
 
-// Initialize champions
 const champions = [
     new Champion(
-        'Akali',
+        'Akali', 
+        'Rebel, Ninja',
         {
             1: { hp: 700, attackDamage: 45, abilityDamage: { damage: 80, magicDamage: 240 } },
             2: { hp: 1260, attackDamage: 68, abilityDamage: { damage: 120, magicDamage: 360 } },
@@ -33,11 +34,10 @@ const champions = [
         },
         0.75,
         'Shuriken Flip',
-        'Melee'
+        1
     )
 ];
 
-champions[0].setStarLevel(2);
-
+champions[0].getStats();
 
 console.log(champions[0]);
