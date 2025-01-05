@@ -1,4 +1,4 @@
-const HexCell = require('.././utils/HexCell.js');
+const HexCell = require('../utils/HexCell.js');
 const Board = require('./board.js');
 
 const board = new Board(8, 7);

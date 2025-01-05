@@ -19,6 +19,33 @@ class Board {
         return grid;
     }
 
+    placeChampion(champion, row, column) {
+
+        const cell = this.grid[row][column];
+
+        if(cell.champion) {
+            throw new Error('Cell already occupied');
+        }
+
+        cell.champion = champion;
+
+        return "Champion placed";
+    }
+
+    removeChampion(row, column) {
+
+    }
+
+    removeChampion(row, column) {
+        const cell = this.grid[row][column];
+        
+        if(cell.champion === null) {
+            throw new Error('No champion to remove');
+        }
+
+        cell.champion = null;
+    }
+
 }
 
 module.exports = Board;
