@@ -19,21 +19,22 @@ class Board {
         return grid;
     }
 
+    isValidPosition(row, column) {
+        if (row < 0 || row >= this.rows || column < 0 || column >= this.columns) {
+            return false;
+        }
+        return true;
+    }
     placeChampion(champion, row, column) {
 
         const cell = this.grid[row][column];
-
         if(cell.champion) {
-            throw new Error('Cell already occupied');
+            console.log(`Cell at row ${row}, column ${column} is already occupied`);
         }
 
         cell.champion = champion;
 
         return "Champion placed";
-    }
-
-    removeChampion(row, column) {
-
     }
 
     removeChampion(row, column) {
@@ -46,6 +47,35 @@ class Board {
         cell.champion = null;
     }
 
+    getChampion(row, column) {
+        if(this.isValidPosition(row, column)) {
+            console.log(this.grid[row][column].champion)
+        } else {
+            return "Invalid position";
+        }
+        // return this.grid[row][column].champion; 
+    }
+
+    displayBoard() {
+        for (let row = 0; row < this.rows; row++) {
+            let rowDisplay = '';
+            for (let col = 0; col < this.columns; col++) {
+                const cell = this.grid[row][col];
+                rowDisplay += cell.champion ? `[${cell.champion.name.charAt(0)}]` : '[ ]';
+            }
+            console.log(rowDisplay);
+        }
+    }
 }
+
+/* TESTING
+const board = new Board(8, 7);
+board.placeChampion({name: 'Aatrox'}, 0, 0);
+board.removeChampion(0, 0);
+board.placeChampion({name: 'Aatrox'}, 0, 1);
+board.displayBoard();
+board.getChampion(0, 1);
+*/
+
 
 module.exports = Board;

@@ -127,7 +127,6 @@ const champions = [
         10, // mana per attack
         70 // ability mana cost
     ), 
-    new Champion()
 ];
 
 
@@ -142,6 +141,5 @@ function getChampionByName(name) {
     return champion;
 }
 
-const champion = getChampionByName('Amumu');
 
-console.log(champion.displayStats());
+module.exports = { Champion, champions, getChampionByName };
