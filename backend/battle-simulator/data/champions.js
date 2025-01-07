@@ -29,7 +29,7 @@ class Champion {
         }
     }
 
-    takeDamage(damage, range) {
+    takeDamage(damage) {
         this.currentHp -= damage;
         if (this.currentHp <= 0) {
             this.currentHp = 0;
@@ -146,7 +146,6 @@ const champions = [
     ), 
 ];
 
-
 function getChampionByName(name) {
     if (!name) {
         return 'Champion name cannot be empty';
@@ -157,6 +156,5 @@ function getChampionByName(name) {
     }
     return champion;
 }
-
 
 module.exports = { Champion, champions, getChampionByName };
