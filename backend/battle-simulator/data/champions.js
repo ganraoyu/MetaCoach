@@ -39,7 +39,6 @@ class Champion {
 
     attack(target) {
         const damage = this.getStats().attackDamage;
-        console.log(`${this.name} attacks ${target.name} for ${damage} damage.`);
         target.takeDamage(damage);
     }
 
@@ -112,6 +111,40 @@ const champions = [
     ),
     new Champion(
         'Darius',
+        1, // cost
+        'Conqueror, Watcher', // traits 
+        {
+            1: { 
+                hp: 600, 
+                attackDamage: 55, 
+                armor: 40, 
+                magicResist: 40,  
+                ability: { reduction: 12, damage: 0, magicDamage: 10 },
+            },
+            2: { 
+                hp: 1100, 
+                attackDamage: 83, 
+                armor: 40,  
+                magicResist: 40,  
+                ability: { reduction: 15, damage: 120, magicDamage: 360 },
+            },
+            3: { 
+                hp: 2100, 
+                attackDamage: 124, 
+                armor: 40,  
+                magicResist: 40,
+                ability: { reduction: 20, damage: 180, magicDamage: 540 },
+            }
+        },
+        0.7, // attack speed
+        'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
+        1, // range
+        30, // mana
+        10, // mana per attack
+        70 // ability mana cost
+    ), 
+    new Champion(
+        'Akali',
         1, // cost
         'Conqueror, Watcher', // traits 
         {
