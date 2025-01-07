@@ -1,4 +1,4 @@
-const HexCell = require('.././utils/HexCell.js');
+const HexCell = require('../utils/HexCell.js');
 
 class Board {
     constructor(rows, columns) {
@@ -20,16 +20,18 @@ class Board {
     }
 
     isValidPosition(row, column) {
-        if (row < 0 || row >= this.rows || column < 0 || column >= this.columns) {
-            return false;
-        }
-        return true;
+        return row >= 0 && row < this.rows && column >= 0 && column < this.columns;
     }
+
     placeChampion(champion, row, column) {
+        if (!this.isValidPosition(row, column)) {
+            throw new Error('Invalid position');
+        }
 
         const cell = this.grid[row][column];
-        if(cell.champion) {
-            console.log(`Cell at row ${row}, column ${column} is already occupied`);
+
+        if (cell.champion) {
+            throw new Error('Cell already occupied');
         }
 
         cell.champion = champion;
@@ -38,9 +40,13 @@ class Board {
     }
 
     removeChampion(row, column) {
+        if (!this.isValidPosition(row, column)) {
+            throw new Error('Invalid position');
+        }
+
         const cell = this.grid[row][column];
-        
-        if(cell.champion === null) {
+
+        if (cell.champion === null) {
             throw new Error('No champion to remove');
         }
 
@@ -48,12 +54,10 @@ class Board {
     }
 
     getChampion(row, column) {
-        if(this.isValidPosition(row, column)) {
-            console.log(this.grid[row][column].champion)
-        } else {
+        if (!this.isValidPosition(row, column)) {
             return "Invalid position";
         }
-        // return this.grid[row][column].champion; 
+        return this.grid[row][column].champion;
     }
 
     displayBoard() {
@@ -66,16 +70,21 @@ class Board {
             console.log(rowDisplay);
         }
     }
+
+    placeChampions(champions, side) {
+        const startRow = side === 'left' ? 0 : Math.floor(this.rows / 2);
+        const endRow = side === 'left' ? Math.floor(this.rows / 2) : this.rows;
+
+        let championIndex = 0;
+        for (let row = startRow; row < endRow; row++) {
+            for (let col = 0; col < this.columns; col++) {
+                if (championIndex < champions.length) {
+                    this.placeChampion(champions[championIndex], row, col);
+                    championIndex++;
+                }
+            }
+        }
+    }
 }
-
-/* TESTING
-const board = new Board(8, 7);
-board.placeChampion({name: 'Aatrox'}, 0, 0);
-board.removeChampion(0, 0);
-board.placeChampion({name: 'Aatrox'}, 0, 1);
-board.displayBoard();
-board.getChampion(0, 1);
-*/
-
 
 module.exports = Board;

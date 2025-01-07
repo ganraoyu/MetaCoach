@@ -1,34 +1,50 @@
 class Champion {
-    // Constructor accepts details for the champion
     constructor(name, cost, traitsList, statsByStarLevel, attackSpeed, abilityName, range, manaPerAttack, abilityManaCost) {
         this.name = name;
-        this.cost = cost;  // Cost to purchase the champion
-        this.traitsList = traitsList;  // List of champion traits (e.g., 'Rebel, Ninja')
-        this.statsByStarLevel = statsByStarLevel;  // Stats for each star level
-        this.attackSpeed = attackSpeed;  // Champion's attack speed
-        this.armor = 0;  // Default armor is 0
-        this.magicResist = 0;  // Default magic resist is 0
-        this.abilityName = abilityName;  // Name of the ability
-        this.range = range;  // Range of the champion (e.g., 1, 2, 3, 4, 5)
-        this.starLevel = 1;  // Default star level is 1 
-        this.mana = 0; // Current mana of the champion
-        this.manaPerAttack = manaPerAttack; // Mana gained per attack
+        this.cost = cost;
+        this.traitsList = traitsList;
+        this.statsByStarLevel = statsByStarLevel;
+        this.attackSpeed = attackSpeed;
+        this.armor = 0;
+        this.magicResist = 0;
+        this.abilityName = abilityName;
+        this.range = range;
+        this.starLevel = 1;
+        this.mana = 0;
+        this.manaPerAttack = manaPerAttack;
         this.abilityManaCost = abilityManaCost;
+        this.currentHp = this.statsByStarLevel[this.starLevel].hp; // Initialize current HP
     }
 
     getStats() {
-        if (!this.statsByStarLevel[this.starLevel]) {
-            console.log(`Invalid star level: ${this.starLevel} for ${this.name}`);
-        }
         return this.statsByStarLevel[this.starLevel];
     }
 
     setStarLevel(starLevel) {
         if (this.statsByStarLevel[starLevel]) {
             this.starLevel = starLevel;
+            this.currentHp = this.statsByStarLevel[starLevel].hp; // Update current HP
         } else {
             console.log(`Invalid star level: ${starLevel} for ${this.name}`);
         }
+    }
+
+    takeDamage(damage, range) {
+        this.currentHp -= damage;
+        if (this.currentHp <= 0) {
+            this.currentHp = 0;
+            console.log(`${this.name} has died.`);
+        }
+    }
+
+    attack(target) {
+        const damage = this.getStats().attackDamage;
+        console.log(`${this.name} attacks ${target.name} for ${damage} damage.`);
+        target.takeDamage(damage);
+    }
+
+    isAlive() {
+        return this.currentHp > 0;
     }
 
     displayStats() {
@@ -54,6 +70,7 @@ class Champion {
                     Mana: ${this.mana}
                     Mana per Attack: ${this.manaPerAttack}
                     Ability Mana Cost: ${this.abilityManaCost}
+                Current HP: ${this.currentHp}
         `;
     }
 }
@@ -65,7 +82,7 @@ const champions = [
         'Automata, Watcher', // traits 
         {
             1: { 
-                hp: 600, 
+                hp: 6000, 
                 attackDamage: 45, 
                 armor: 15, 
                 magicResist: 20,  
