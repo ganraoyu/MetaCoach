@@ -82,7 +82,7 @@ const champions = [
         'Automata, Watcher', // traits 
         {
             1: { 
-                hp: 6000, 
+                hp: 600, 
                 attackDamage: 45, 
                 armor: 15, 
                 magicResist: 20,  
@@ -96,7 +96,7 @@ const champions = [
                 ability: { reduction: 15, damage: 0 , magicDamage: 15, healing: 0 },
             },
             3: { 
-                hp: 1944, 
+                hp: 19440, 
                 attackDamage: 101, 
                 armor: 50,  
                 magicResist: 60,

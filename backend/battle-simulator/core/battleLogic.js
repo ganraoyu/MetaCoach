@@ -4,42 +4,48 @@ const { Champion, champions, getChampion, getChampionByName } = require('../data
 
 const board = new Board(8, 7);
 
-function placeChampionByName(championName, row, column) {
+function placeChampionByName(championName, row, column, starLevel) {
     const champion = getChampionByName(championName);
     if (typeof champion === 'string') {
         console.log(champion); 
     } else {
+        champion.setStarLevel(starLevel);
         board.placeChampion(champion, row, column);
     }
 }
 
-function startBattle(champion1, row1, column1, champion2, row2, column2) {
-    console.log("Battle started!");
+function startBattle() {
+    console.log('Battle started!');
 
-    while (champion1.isAlive() && champion2.isAlive()) {
-        champion1.attack(champion2);
-        if (champion2.isAlive()) {
-            champion2.attack(champion1);
+    let player1 = [];  //yourself
+    let player2 = [];
+
+    for(let row = 4; row < board.rows; row++) {
+        for(let column = 3; column < board.columns; column++) {
+            const champion = board.getChampion(row, column);
+            if (champion) {
+                player1.push(champion);
+            }
+        }
+    }
+    
+    for (let row = 0; row < 4; row++) {
+        for (let column = 0; column < 4; column++) {
+            const champion = board.getChampion(row, column);
+            if (champion) {
+                player2.push(champion);
+            }
         }
     }
 
-    if (champion1.isAlive()) {
-        console.log(`${champion1.name} wins!`);
-    } if(champion2.isAlive()) {
-        console.log(`${champion2.name} wins!`);
-    } if(!champion1.isAlive() && !champion2.isAlive()) {
-        console.log("It's a draw!");
-    }
-
-    console.log("Battle ended!");
+    console.log(player1.map(champion => champion.name));
+    console.log(player2.map(champion => champion.name));
+    console.log('Battle ended!');
 }
 
-placeChampionByName('Amumu', 3, 3);
-placeChampionByName('Amumu', 4, 3);
+placeChampionByName('Darius', 3, 3, 1);
+placeChampionByName('Amumu', 4, 3, 3);
 
-const champion1 = board.getChampion(3, 3);
-const champion2 = board.getChampion(4, 3);
-
-startBattle(champion1, 3, 3, champion2, 4, 3);
+startBattle();
 
 board.displayBoard();
