@@ -42,6 +42,7 @@ class Champion {
         target.takeDamage(damage);
         this.mana += this.manaPerAttack;
     }
+    
     isAlive() {
         return this.currentHp > 0;
     }
@@ -116,7 +117,7 @@ const champions = [
         1, // range
         0, // mana
         10, // mana per attack
-        0 // ability mana cost
+        70 // ability mana cost
     ),
     new Champion(
         'Darius',

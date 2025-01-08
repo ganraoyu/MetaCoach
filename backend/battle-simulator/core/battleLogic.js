@@ -2,6 +2,12 @@ const HexCell = require('../utils/HexCell.js');
 const Board = require('./board.js');
 const { Champion, champions, getChampionByName } = require('../data/champions.js');
 
+
+/* 
+cd backend/battle-simulator/core
+nodemon battlelogic
+*/
+
 const board = new Board(8, 7);
 
 function placeChampionByName(championName, row, column, starLevel, team) {
@@ -53,6 +59,8 @@ function startBattle() {
                     champion.attack(target);
                     champion.useAbility(target);
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
+                    console.log(`${champion.name} gains ${champion.getStats().manaPerAttack} mana`);
+                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage}`);
                 } 
             }
         });
@@ -70,9 +78,6 @@ function startBattle() {
             }
         });
 
-        player = player.filter(champion => champion.currentHp > 0);
-        opponent = opponent.filter(champion => champion.currentHp > 0);
-
         console.log('Player team:', player.map(champion => `${champion.name} (${champion.currentHp} HP)`));
         console.log('Opponent team:', opponent.map(champion => `${champion.name} (${champion.currentHp} HP)`));
     }
@@ -89,7 +94,7 @@ function startBattle() {
 }
 
 placeChampionByName('Amumu', 4, 2, 1, 'player');
-placeChampionByName('Darius', 4, 3, 1, 'player');
+placeChampionByName('Darius', 4, 3, 2, 'player');
 placeChampionByName('Akali', 3, 3, 2, 'opponent');
 
 startBattle();
