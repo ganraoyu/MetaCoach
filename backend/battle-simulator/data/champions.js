@@ -40,10 +40,19 @@ class Champion {
     attack(target) {
         const damage = this.getStats().attackDamage;
         target.takeDamage(damage);
+        this.mana += this.manaPerAttack;
     }
-
     isAlive() {
         return this.currentHp > 0;
+    }
+
+    useAbility(target) {
+        const ability = this.getStats().ability;
+        const Damage = ability.damage;
+        if(this.mana >= this.abilityManaCost) {
+            this.mana -= this.abilityManaCost;
+        }
+        target.takeDamage(Damage);
     }
 
     displayStats() {
@@ -106,7 +115,7 @@ const champions = [
         'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
         1, // range
         0, // mana
-        0, // mana per attack
+        10, // mana per attack
         0 // ability mana cost
     ),
     new Champion(

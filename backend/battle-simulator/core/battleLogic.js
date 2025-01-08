@@ -51,7 +51,8 @@ function startBattle() {
                 const target = opponent.find(c => c.currentHp > 0);
                 if (target) {
                     champion.attack(target);
-                    console.log(`${champion.name} attacks ${target.name}`);
+                    champion.useAbility(target);
+                    console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
                 } 
             }
         });
@@ -61,7 +62,10 @@ function startBattle() {
                 const target = player.find(c => c.currentHp > 0);
                 if (target) {
                     champion.attack(target);
-                    console.log(`${champion.name} attacks ${target.name}`);
+                    champion.useAbility(target);
+                    console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
+                    console.log(`${champion.name} gains ${champion.getStats().manaPerAttack} mana`);
+                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage}`);
                 }
             }
         });
@@ -86,7 +90,7 @@ function startBattle() {
 
 placeChampionByName('Amumu', 4, 2, 1, 'player');
 placeChampionByName('Darius', 4, 3, 1, 'player');
-placeChampionByName('Akali', 3, 3, 3, 'opponent');
+placeChampionByName('Akali', 3, 3, 2, 'opponent');
 
 startBattle();
 
