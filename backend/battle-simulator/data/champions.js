@@ -38,8 +38,15 @@ class Champion {
     }
 
     attack(target) {
+        const ability = target.getStats().ability;
+        const damageReduction = ability.reduction;
         const damage = this.getStats().attackDamage;
-        target.takeDamage(damage);
+
+        if(damageReduction === 0){
+            target.takeDamage(damage)
+        } else {
+            target.takeDamage(damage - (damage * damageReduction / 100));
+        }
         this.mana += this.manaPerAttack;
     }
     
@@ -49,13 +56,19 @@ class Champion {
 
     useAbility(target) {
         const ability = this.getStats().ability;
+        const abilityReduction = this.getStats().ability;
         const damage = ability.damage;
         const magicDamage = ability.magicDamage;
+        const damageReduction = abilityReduction.reduction
         const heal = ability.healing;
     
         if(this.mana >= this.abilityManaCost) {
             this.mana -= this.abilityManaCost;
-            target.takeDamage(damage + magicDamage);
+            if(damageReduction === 0){
+                target.takeDamage(damage + magicDamage);
+            } else {
+                target.takeDamage((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100));
+            }
             this.currentHp += heal; 
         }
     }
@@ -101,7 +114,7 @@ const champions = [
                 attackDamage: 45, 
                 armor: 15, 
                 magicResist: 20,  
-                ability: { reduction: 50, damage: 0, magicDamage: 10, healing: 0},
+                ability: { reduction: 12, damage: 0, magicDamage: 10, healing: 0},
             },
             2: { 
                 hp: 1080, 
@@ -121,7 +134,7 @@ const champions = [
         0.6, // attack speed
         'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
         1, // range
-        0, // mana
+        50, // mana
         10, // mana per attack
         70 // ability mana cost
     ),

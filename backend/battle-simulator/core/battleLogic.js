@@ -62,7 +62,7 @@ function startBattle() {
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
                     console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);                    
                     console.log(`${champion.name} has ${champion.mana} mana`)
-
+            
                     console.log(`${champion.name} has healed for ${champion.getStats().ability.healing} HP`);
 
                     
@@ -81,7 +81,9 @@ function startBattle() {
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
                     console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);                    
                     console.log(`${champion.name} has ${champion.mana} mana`)
+              
                     console.log(`${champion.name} has healed for ${champion.getStats().ability.healing} HP`);
+
                 }
             }
         });
