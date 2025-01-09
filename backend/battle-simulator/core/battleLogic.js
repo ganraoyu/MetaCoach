@@ -58,11 +58,16 @@ function startBattle() {
                 if (target) {
                     champion.attack(target);
                     champion.useAbility(target);
+                    /*
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
                     console.log(`${champion.name} gains ${champion.getStats().manaPerAttack} mana`);
-                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage}`);
+                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage} damage`);
+                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.magicDamage} magic damage`);
+                    */
+                    console.log(`${champion.getStats().mana}`)
                 } 
             }
+            player = player.filter(champion => champion.currentHp > 0);
         });
 
         opponent.forEach(champion => {
@@ -71,31 +76,35 @@ function startBattle() {
                 if (target) {
                     champion.attack(target);
                     champion.useAbility(target);
+                    /*
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
                     console.log(`${champion.name} gains ${champion.getStats().manaPerAttack} mana`);
-                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage}`);
+                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage} damage`);
+                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.magicDamage} magic damage`);
+                    */
                 }
             }
         });
-
+        opponent = opponent.filter(champion => champion.currentHp > 0);
         console.log('Player team:', player.map(champion => `${champion.name} (${champion.currentHp} HP)`));
         console.log('Opponent team:', opponent.map(champion => `${champion.name} (${champion.currentHp} HP)`));
     }
 
-    if (player.length > 0) {
+    if (player.filter(champion => champion.currentHp > 0).length > 0) {
         console.log('Player team wins!');
-    } else if (opponent.length > 0) {
+    } else if (opponent.filter(champion => champion.currentHp > 0).length > 0) {
         console.log('Opponent team wins!');
     } else {
         console.log('No champions left standing.');
     }
 
+    console.log(player.map(champion => champion.name))
     console.log('Battle ended!');
 }
 
 placeChampionByName('Amumu', 4, 2, 1, 'player');
-placeChampionByName('Darius', 4, 3, 2, 'player');
-placeChampionByName('Akali', 3, 3, 2, 'opponent');
+placeChampionByName('Darius', 4, 3, 1, 'player');
+placeChampionByName('Akali', 3, 3, 3, 'opponent');
 
 startBattle();
 

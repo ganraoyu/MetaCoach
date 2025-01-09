@@ -1,5 +1,5 @@
 class Champion {
-    constructor(name, cost, traitsList, statsByStarLevel, attackSpeed, abilityName, range, manaPerAttack, abilityManaCost) {
+    constructor(name, cost, traitsList, statsByStarLevel, attackSpeed, abilityName, range, mana, manaPerAttack, abilityManaCost) {
         this.name = name;
         this.cost = cost;
         this.traitsList = traitsList;
@@ -10,9 +10,10 @@ class Champion {
         this.abilityName = abilityName;
         this.range = range;
         this.starLevel = 1;
-        this.mana = 0;
+        this.mana = mana;
         this.manaPerAttack = manaPerAttack;
         this.abilityManaCost = abilityManaCost;
+        this.currentMana = 0
         this.currentHp = this.statsByStarLevel[this.starLevel].hp; // Initialize current HP
     }
 
@@ -49,11 +50,12 @@ class Champion {
 
     useAbility(target) {
         const ability = this.getStats().ability;
-        const Damage = ability.damage;
+        const damage = ability.damage;
+        const magicDamage = ability.magicDamage;
         if(this.mana >= this.abilityManaCost) {
             this.mana -= this.abilityManaCost;
         }
-        target.takeDamage(Damage);
+        target.takeDamage(damage, magicDamage);
     }
 
     displayStats() {
@@ -105,7 +107,7 @@ const champions = [
                 ability: { reduction: 15, damage: 0 , magicDamage: 15, healing: 0 },
             },
             3: { 
-                hp: 19440, 
+                hp: 1944, 
                 attackDamage: 101, 
                 armor: 50,  
                 magicResist: 60,
@@ -149,7 +151,7 @@ const champions = [
         0.7, // attack speed
         'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
         1, // range
-        30, // mana
+        10, // mana
         10, // mana per attack
         70 // ability mana cost
     ), 
@@ -183,7 +185,7 @@ const champions = [
         0.7, // attack speed
         'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
         1, // range
-        30, // mana
+        10, // mana
         10, // mana per attack
         70 // ability mana cost
     ), 
@@ -199,5 +201,6 @@ function getChampionByName(name) {
     }
     return champion;
 }
+
 
 module.exports = { Champion, champions, getChampionByName };
