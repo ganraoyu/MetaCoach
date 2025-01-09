@@ -58,13 +58,12 @@ function startBattle() {
                 if (target) {
                     champion.attack(target);
                     champion.useAbility(target);
-                    /*
+                    
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
-                    console.log(`${champion.name} gains ${champion.getStats().manaPerAttack} mana`);
+                    console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);
                     console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage} damage`);
                     console.log(`${champion.name} ability attacks for ${champion.getStats().ability.magicDamage} magic damage`);
-                    */
-                    console.log(`${champion.getStats().mana}`)
+                    
                 } 
             }
             player = player.filter(champion => champion.currentHp > 0);
@@ -76,12 +75,12 @@ function startBattle() {
                 if (target) {
                     champion.attack(target);
                     champion.useAbility(target);
-                    /*
+                    
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
-                    console.log(`${champion.name} gains ${champion.getStats().manaPerAttack} mana`);
+                    console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);
                     console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage} damage`);
                     console.log(`${champion.name} ability attacks for ${champion.getStats().ability.magicDamage} magic damage`);
-                    */
+                    console.log(`${champion.manaPerAttack} mana`);
                 }
             }
         });
