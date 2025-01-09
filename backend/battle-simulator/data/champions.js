@@ -13,7 +13,6 @@ class Champion {
         this.mana = mana;
         this.manaPerAttack = manaPerAttack;
         this.abilityManaCost = abilityManaCost;
-        this.currentMana = 0
         this.currentHp = this.statsByStarLevel[this.starLevel].hp; // Initialize current HP
     }
 
@@ -52,9 +51,12 @@ class Champion {
         const ability = this.getStats().ability;
         const damage = ability.damage;
         const magicDamage = ability.magicDamage;
+        const heal = ability.healing;
+    
         if(this.mana >= this.abilityManaCost) {
             this.mana -= this.abilityManaCost;
-            target.takeDamage(damage, magicDamage);
+            target.takeDamage(damage + magicDamage);
+            this.currentHp += heal; 
         }
     }
 
@@ -99,7 +101,7 @@ const champions = [
                 attackDamage: 45, 
                 armor: 15, 
                 magicResist: 20,  
-                ability: { reduction: 12, damage: 0, magicDamage: 10, healing: 0},
+                ability: { reduction: 50, damage: 0, magicDamage: 10, healing: 0},
             },
             2: { 
                 hp: 1080, 
@@ -133,21 +135,21 @@ const champions = [
                 attackDamage: 55, 
                 armor: 40, 
                 magicResist: 40,  
-                ability: { reduction: 12, damage: 0, magicDamage: 10 },
+                ability: { reduction: 12, damage: 0, magicDamage: 10,  healing: 0 },
             },
             2: { 
                 hp: 1100, 
                 attackDamage: 83, 
                 armor: 40,  
                 magicResist: 40,  
-                ability: { reduction: 15, damage: 120, magicDamage: 360 },
+                ability: { reduction: 15, damage: 120, magicDamage: 36, healing: 0 },
             },
             3: { 
                 hp: 2100, 
                 attackDamage: 124, 
                 armor: 40,  
                 magicResist: 40,
-                ability: { reduction: 20, damage: 180, magicDamage: 540 },
+                ability: { reduction: 20, damage: 180, magicDamage: 540, healing: 0 },
             }
         },
         0.7, // attack speed
@@ -167,27 +169,27 @@ const champions = [
                 attackDamage: 55, 
                 armor: 40, 
                 magicResist: 40,  
-                ability: { reduction: 12, damage: 0, magicDamage: 10 },
+                ability: { reduction: 12, damage: 0, magicDamage: 10, healing: 0 },
             },
             2: { 
                 hp: 1100, 
                 attackDamage: 83, 
                 armor: 40,  
                 magicResist: 40,  
-                ability: { reduction: 15, damage: 120, magicDamage: 360 },
+                ability: { reduction: 15, damage: 120, magicDamage: 360, healing: 0 },
             },
             3: { 
                 hp: 2100, 
                 attackDamage: 124, 
                 armor: 40,  
                 magicResist: 40,
-                ability: { reduction: 20, damage: 180, magicDamage: 540 },
+                ability: { reduction: 20, damage: 180, magicDamage: 540, healing: 0 },
             }
         },
         0.7, // attack speed
         'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
         1, // range
-        10, // mana
+        60, // mana
         10, // mana per attack
         70 // ability mana cost
     ), 
@@ -203,6 +205,5 @@ function getChampionByName(name) {
     }
     return champion;
 }
-
 
 module.exports = { Champion, champions, getChampionByName };

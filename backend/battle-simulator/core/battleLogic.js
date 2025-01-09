@@ -60,9 +60,11 @@ function startBattle() {
                     champion.useAbility(target);
                     
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
-                    console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);
-                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage} damage`);
-                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.magicDamage} magic damage`);
+                    console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);                    
+                    console.log(`${champion.name} has ${champion.mana} mana`)
+
+                    console.log(`${champion.name} has healed for ${champion.getStats().ability.healing} HP`);
+
                     
                 } 
             }
@@ -77,10 +79,9 @@ function startBattle() {
                     champion.useAbility(target);
                     
                     console.log(`${champion.name} attacks ${target.name} for ${champion.getStats().attackDamage}`);
-                    console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);
-                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.damage} damage`);
-                    console.log(`${champion.name} ability attacks for ${champion.getStats().ability.magicDamage} magic damage`);
-                    console.log(`${champion.manaPerAttack} mana`);
+                    console.log(`${champion.name} gains ${champion.manaPerAttack} mana`);                    
+                    console.log(`${champion.name} has ${champion.mana} mana`)
+                    console.log(`${champion.name} has healed for ${champion.getStats().ability.healing} HP`);
                 }
             }
         });
@@ -97,13 +98,12 @@ function startBattle() {
         console.log('No champions left standing.');
     }
 
-    console.log(player.map(champion => champion.name))
     console.log('Battle ended!');
 }
 
 placeChampionByName('Amumu', 4, 2, 1, 'player');
 placeChampionByName('Darius', 4, 3, 1, 'player');
-placeChampionByName('Akali', 3, 3, 3, 'opponent');
+placeChampionByName('Akali', 3, 3, 2, 'opponent');
 
 startBattle();
 
