@@ -43,9 +43,9 @@ class Champion {
         const damage = this.getStats().attackDamage;
 
         if(damageReduction === 0){
-            target.takeDamage(damage)
+            target.takeDamage(Math.round(damage));
         } else {
-            target.takeDamage(damage - (damage * damageReduction / 100));
+            target.takeDamage(Math.round(damage - (damage * damageReduction / 100)));
         }
         this.mana += this.manaPerAttack;
     }
@@ -65,9 +65,9 @@ class Champion {
         if(this.mana >= this.abilityManaCost) {
             this.mana -= this.abilityManaCost;
             if(damageReduction === 0){
-                target.takeDamage(damage + magicDamage);
+                target.takeDamage(Math.round(damage + magicDamage));
             } else {
-                target.takeDamage((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100));
+                target.takeDamage(Math.round((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100)));
             }
             this.currentHp += heal; 
         }
