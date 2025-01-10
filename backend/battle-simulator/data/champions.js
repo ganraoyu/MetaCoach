@@ -61,10 +61,18 @@ class Champion {
         const magicDamage = ability.magicDamage;
         const damageReduction = abilityReduction.reduction
         const heal = ability.healing;
+        const armor = target.armor;
+        const magicResist = target.magicResist;
     
+
+        // calculate armor/magic resist first then reduction
+        
         if(this.mana >= this.abilityManaCost) {
             this.mana -= this.abilityManaCost;
-            if(damageReduction === 0){
+            if(damageReduction === 0 ||){
+                if(armor > 0 || magicResist > 0){
+                    target.takeDamage(Math.round((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100) - ((damage + magicDamage) * armor / 100) - ((damage + magicDamage) * magicResist / 100)));
+                }
                 target.takeDamage(Math.round(damage + magicDamage));
             } else {
                 target.takeDamage(Math.round((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100)));

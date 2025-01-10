@@ -2,7 +2,6 @@ const HexCell = require('../utils/HexCell.js');
 const Board = require('./board.js');
 const { Champion, champions, getChampionByName } = require('../data/champions.js');
 
-
 /* 
 cd backend/battle-simulator/core
 nodemon battlelogic
@@ -54,7 +53,7 @@ function startBattle() {
 
     for(let i = 0; i < 100; i++ ){
         while(player.some(champion => champion.currentHp > 0) && opponent.some(champion => champion.currentHp > 0)) {
-
+            
             player.forEach(champion => {
                 if(champion.currentHp > 0) {
                     const target = opponent.find(c => c.currentHp > 0);
@@ -94,8 +93,6 @@ function startBattle() {
             console.log('Opponent team:', opponent.map(champion => `${champion.name} (${champion.currentHp} HP)`));
         }
 
-
-
         if (player.filter(champion => champion.currentHp > 0).length > 0) {
             playerWins.push(1)
         } else if (opponent.filter(champion => champion.currentHp > 0).length > 0) {
@@ -104,7 +101,7 @@ function startBattle() {
             console.log('No champions left standing.');
         }
     }
-    
+
         const playerWinRate = playerWins.length / 100 * 100 + '%'
         const opponentWinRate = opponentWins.length / 100 * 100 + '%'
         console.log('Player win rate:', playerWinRate);
