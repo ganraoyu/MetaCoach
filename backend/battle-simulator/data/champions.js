@@ -1,5 +1,5 @@
 class Champion {
-    constructor(name, cost, traitsList, statsByStarLevel, attackSpeed, abilityName, range, mana, manaPerAttack, abilityManaCost) {
+    constructor(name, cost, traitsList, statsByStarLevel, attackSpeed, abilityName, range, mana, manaPerAttack, abilityManaCost, attackCritChance, attackCritDamage) {
         this.name = name;
         this.cost = cost;
         this.traitsList = traitsList;
@@ -13,6 +13,8 @@ class Champion {
         this.mana = mana;
         this.manaPerAttack = manaPerAttack;
         this.abilityManaCost = abilityManaCost;
+        this.attackCritChance = 0;
+        this.attackCritDamage = 0;
         this.currentHp = this.statsByStarLevel[this.starLevel].hp; // Initialize current HP
     }
 
@@ -71,9 +73,9 @@ class Champion {
             this.mana -= this.abilityManaCost;
             if(damageReduction === 0 ){
                 if(armor > 0 || magicResist > 0){
-                    let physicalDamage = damage - ((damage) * armor / 100);
+                    let physicalDamageTaken = damage - ((damage) * armor / 100);
                     let magicDamageTaken = magicDamage - ((magicDamage) * magicResist / 100);                    
-                    target.takeDamage(Math.round(physicalDamage + magicDamageTaken));                    
+                    target.takeDamage(Math.round(physicalDamageTaken + magicDamageTaken));                    
                 } else {
                     target.takeDamage(Math.round(damage + magicDamage));
                 }
@@ -147,7 +149,9 @@ const champions = [
         1, // range
         10, // mana
         10, // mana per attack
-        70 // ability mana cost
+        70, // ability mana cost
+        25, // attack crit chance
+        140 // attack crit damage
     ),
     new Champion(
         'Darius',
@@ -181,7 +185,9 @@ const champions = [
         1, // range
         30, // mana
         10, // mana per attack
-        70 // ability mana cost
+        70, // ability mana cost
+        25, // attack crit chance
+        140 // attack crit damage
     ), 
     new Champion(
         'Akali',
@@ -215,7 +221,9 @@ const champions = [
         1, // range
         60, // mana
         10, // mana per attack
-        70 // ability mana cost
+        70, // ability mana cost
+        25, // attack crit chance
+        140 // attack crit damage
     ), 
 ];
 

@@ -110,7 +110,7 @@ function startBattle() {
 }
 
 placeChampionByName('Amumu', 4, 2, 1, 'player');  // row, column, starLevel, team
-placeChampionByName('Darius', 4, 3, 1, 'player');
+placeChampionByName('Darius', 4, 3, 1, 'player'); 
 placeChampionByName('Akali', 3, 3, 2, 'opponent');
 
 startBattle();
