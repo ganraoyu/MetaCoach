@@ -66,14 +66,17 @@ class Champion {
     
 
         // calculate armor/magic resist first then reduction
-        
+
         if(this.mana >= this.abilityManaCost) {
             this.mana -= this.abilityManaCost;
-            if(damageReduction === 0 ||){
+            if(damageReduction === 0 ){
                 if(armor > 0 || magicResist > 0){
-                    target.takeDamage(Math.round((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100) - ((damage + magicDamage) * armor / 100) - ((damage + magicDamage) * magicResist / 100)));
+                    let physicalDamage = damage - ((damage) * armor / 100);
+                    let magicDamageTaken = magicDamage - ((magicDamage) * magicResist / 100);                    
+                    target.takeDamage(Math.round(physicalDamage + magicDamageTaken));                    
+                } else {
+                    target.takeDamage(Math.round(damage + magicDamage));
                 }
-                target.takeDamage(Math.round(damage + magicDamage));
             } else {
                 target.takeDamage(Math.round((damage + magicDamage) - ((damage + magicDamage) * damageReduction / 100)));
             }
@@ -82,7 +85,7 @@ class Champion {
     }
 
     displayStats() {
-        const stats = this.getStats();
+        const stats = this.getStats(); 
         
         return `
             Name: ${this.name}
@@ -122,7 +125,7 @@ const champions = [
                 attackDamage: 45, 
                 armor: 15, 
                 magicResist: 20,  
-                ability: { reduction: 12, damage: 0, magicDamage: 10, healing: 0},
+                ability: { reduction: 0, damage: 0, magicDamage: 10, healing: 0},
             },
             2: { 
                 hp: 1080, 
@@ -142,7 +145,7 @@ const champions = [
         0.6, // attack speed
         'Obsolete Technology: Passive: Amumu reduces all incoming damage. Every second, emit sparks that deal magic damage to adjacent enemies. ', // ability name
         1, // range
-        50, // mana
+        10, // mana
         10, // mana per attack
         70 // ability mana cost
     ),
